@@ -3,10 +3,9 @@ import MyRequest from '@/services/index'
  * 调用demo
  * cosnt [err, res] = await getUser()
 */
-export const getUser = (data:any) => {
+export const getLinks = () => {
   return MyRequest.request({
-    url: '/users/userInfo',
-    method: 'GET',
-    params: data
+    url: '/links/getLinks',
+    method: 'GET'
   })
 }

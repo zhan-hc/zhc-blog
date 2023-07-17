@@ -48,8 +48,9 @@ class MyAxios {
 
   request<T>(config: InternalAxiosRequestConfig): Promise<[any, T | undefined]> {
     return new Promise((resolve, reject) => {
-      this.instance.request<any, T>(config).then(res => {
-        resolve([null, res])
+      this.instance.request<any, T>(config).then((res:any) => {
+        const { data } = res.data
+        resolve([null, data])
       })
       .catch((err) => {
         reject([err, undefined])

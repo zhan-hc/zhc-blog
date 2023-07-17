@@ -2,7 +2,7 @@
 import MyAxios from './axios'
 
 const MyRequest =  new MyAxios({
-  baseURL: '/',
+  baseURL: '/api',
   timeout: 3000
 })
 
