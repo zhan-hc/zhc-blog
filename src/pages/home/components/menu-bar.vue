@@ -1,7 +1,7 @@
 <template>
   <div class="menu-bar card">
     <div class="menu-item" v-for="(tab, i) in tabs" :key="i" @click="tabClick(i)">
-      <span class="ellipsis">{{tab[`${MODULES.JUMP}_tag`]}}</span>
+      <span class="ellipsis">{{tab.jump_tag}}</span>
     </div>
     <div v-if="tabs.length" class="menu__active-bar" :style="barStyle"></div>
   </div>
@@ -10,7 +10,6 @@
 <script lang='ts' setup>
   import { ref, watch, nextTick } from 'vue';
   import type { CSSProperties } from 'vue'
-  import { MODULES } from '../../../constants';
   import { JumpType } from '../../../constants/types';
   const props = defineProps({
     tabs: {
@@ -53,7 +52,9 @@
 .menu-bar {
   position: fixed;
   left: 50px;
-  top: 100px;
+  top: 84px;
+  max-height: 500px;
+  overflow-y: scroll;
   .menu-item {
     position: relative;
     display: flex;

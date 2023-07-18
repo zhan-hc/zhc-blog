@@ -1,18 +1,21 @@
 import { toRefs, reactive, onMounted, nextTick } from 'vue'
 import { getJumpTypes } from '../../api/jump'
+import { getLinks } from '../../api/links';
 import { JumpType, LinkListType } from '../../constants/types'
 
 export default function () {
   const state: {
     tabs: JumpType[];
-    list: LinkListType[];
+    linkList: LinkListType[];
     scrollTop: number;
     isScrollingDown: boolean;
+    isObserving: boolean;
   } = reactive({
     tabs: [],
-    list: [],
+    linkList: [],
     scrollTop: 0,
     isScrollingDown: true,
+    isObserving: false
   })
 
   const tabClick = (index: number) => {
@@ -29,7 +32,12 @@ export default function () {
       })
   }
 
+  const handleJump = (url: any) => {
+    window.open(url)
+  }
+
   const handleScroll = (e: Event) => {
+    observeNavBar()
     const target = e.target as HTMLElement
     const scrollTop = target.scrollTop
     state.isScrollingDown = state.scrollTop <= scrollTop
@@ -38,36 +46,41 @@ export default function () {
   }
   // 监听出现的导航栏元素
   const observeNavBar = () => {
-    const navList =  document.querySelectorAll('.tab-list')
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) { // 目标元素出现在可视区
-          const Index = Number(entry.target.id.replace('nav-bar_', ''))
-          // 根据滚动方向来判断最顶部或者最底部出现的元素
-          if (state.isScrollingDown && entry.boundingClientRect.bottom >= window.innerHeight) {
-            activeTabIndex(Index)
-          } else if (!state.isScrollingDown && entry.boundingClientRect.top <= 0) {
-            activeTabIndex(Index)
+    if (!state.isObserving) {
+      const navList =  document.querySelectorAll('.tab-list')
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) { // 目标元素出现在可视区
+            const Index = Number(entry.target.id.replace('nav-bar_', ''))
+            console.log(entry.boundingClientRect.top, 'entry.boundingClientRect.top')
+            // 根据滚动方向来判断最顶部或者最底部出现的元素
+            if (state.isScrollingDown && entry.boundingClientRect.bottom >= window.innerHeight) {
+              activeTabIndex(Index)
+            } else if (!state.isScrollingDown && entry.boundingClientRect.top <= 64) {
+              activeTabIndex(Index)
+            }
           }
-        }
+        })
+      }, {
+        threshold: [0.1, 0.9]
       })
-    }, {
-      threshold: [0.1]
-    })
-    Array.from(navList).forEach(nav => observer.observe(nav))
+      Array.from(navList).forEach(nav => observer.observe(nav))
+      state.isObserving = true
+    }
   }
 
   onMounted(async () => {
-    const [err, {jump: tabs = []}] = await getJumpTypes()
-    if (!err) {
-      state.tabs = tabs
-      activeTabIndex(0)
-    }
-    nextTick(() => observeNavBar())
+    const [tabRes, linkRes] = await Promise.all([getJumpTypes(), getLinks()])
+    const [err1, {jump: tabs = []}] = tabRes
+    const [err2, {links = []}] = linkRes
+    state.tabs = tabs
+    state.linkList = links
+    activeTabIndex(0)
   })
   return {
     ...toRefs(state),
     tabClick,
+    handleJump,
     handleScroll
   }
 }

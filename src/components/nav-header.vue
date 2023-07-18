@@ -1,6 +1,9 @@
 <template>
   <div class="nav-header">
-    <div class="author">前端笨鸟</div>
+    <div class="header-left">
+      <img class="logo" src="@/assets/image/logo.png" alt=""/>
+      <span class="author">前端笨鸟</span>
+    </div>
     <div class="header-tags">
       <div class="tag active">Home</div>
       <div class="tag">Category</div>
@@ -46,11 +49,20 @@
     background-color: #fff;
     border-bottom: 1px solid #f1f1f1;
     box-sizing: border-box;
-    .author {
-      font-size: 20px;
-      font-weight: bold;
-      color: #506690;
-      letter-spacing: 2px;
+    .header-left {
+      display: flex;
+      align-items: center;
+      .author {
+        font-size: 20px;
+        font-weight: bold;
+        color: $primary-color;
+        letter-spacing: 2px;
+      }
+      .logo {
+        width: 24px;
+        height: 24px;
+        margin-right: 10px;
+      }
     }
     .header-tags {
       display: flex;

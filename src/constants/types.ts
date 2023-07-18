@@ -1,18 +1,16 @@
-import { MODULES } from "@/constants"
-
 export interface LinksType {
-  [key: `${MODULES.LINK}_id`]: number;
-  [key: `${MODULES.LINK}_icon`]: string;
-  [key: `${MODULES.LINK}_name`]: string;
-  [key: `${ MODULES.LINK}_desc`]: string;
-  [key: `${MODULES.LINK}_url`]: string;
-  [key: `${MODULES.JUMP}_id`]: number;
+  link_id: number;
+  link_icon: string;
+  link_name: string;
+  link_desc: string;
+  link_url: string;
+  jump_id: number;
 }
 
 export interface JumpType {
-  [key: `${MODULES.JUMP}_id`]: number;
-  [key: `${MODULES.JUMP}_tag`]: string;
-  [key: `${ MODULES.JUMP}_desc`]: string;
+  jump_id: number;
+  jump_tag: string;
+  jump_desc: string;
   active?: boolean
 }
 
