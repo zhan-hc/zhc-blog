@@ -10,8 +10,12 @@ export interface LinksType {
 }
 
 export interface JumpType {
-  [key: `${MODULES.LINK}_id`]: number;
-  [key: `${MODULES.LINK}_tag`]: string;
-  [key: `${ MODULES.LINK}_desc`]: string;
+  [key: `${MODULES.JUMP}_id`]: number;
+  [key: `${MODULES.JUMP}_tag`]: string;
+  [key: `${ MODULES.JUMP}_desc`]: string;
   active?: boolean
+}
+
+export interface LinkListType extends JumpType {
+  children?: LinksType
 }

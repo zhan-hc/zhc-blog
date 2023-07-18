@@ -1,0 +1,29 @@
+@media screen and (max-width: 900px) {
+  /* 顶部导航栏*/
+  .nav-header {
+    height: 56px !important;
+    padding: 4px 20px !important;
+    .header-tags {
+      .tag {
+        display: none;
+      }
+      .icon-expand {
+        display: block !important;
+      }
+    }
+  }
+  .nav-fill {
+    height: 56px !important;
+  }
+  .header-expand {
+    display: block;
+  }
+  /* 左边菜单*/
+  .menu-bar {
+    display: none;
+  }
+  /**/
+  .tab-content {
+    padding: 20px !important;
+  }
+}

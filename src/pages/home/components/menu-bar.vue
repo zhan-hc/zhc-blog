@@ -1,18 +1,17 @@
 <template>
-  <div class="menu-bar">
+  <div class="menu-bar card">
     <div class="menu-item" v-for="(tab, i) in tabs" :key="i" @click="tabClick(i)">
       <span class="ellipsis">{{tab[`${MODULES.JUMP}_tag`]}}</span>
-      
     </div>
-    <div class="menu__active-bar" :style="barStyle"></div>
+    <div v-if="tabs.length" class="menu__active-bar" :style="barStyle"></div>
   </div>
 </template>
 
 <script lang='ts' setup>
   import { ref, watch, nextTick } from 'vue';
   import type { CSSProperties } from 'vue'
-import { MODULES } from '../../../constants';
-import { JumpType } from '../../../constants/types';
+  import { MODULES } from '../../../constants';
+  import { JumpType } from '../../../constants/types';
   const props = defineProps({
     tabs: {
       type: Array<JumpType>,
@@ -55,21 +54,16 @@ import { JumpType } from '../../../constants/types';
   position: fixed;
   left: 50px;
   top: 100px;
-  box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
-  border-radius: 6px;
   .menu-item {
     position: relative;
     display: flex;
     align-items: center;
+    max-width: 200px;
     height: 40px;
     padding: 0 20px;
     box-sizing: border-box;
-    max-width: 200px;
     &:hover {
       cursor: pointer;
-    }
-    &:last-of-type {
-      margin-bottom: 0;
     }
   }
   .menu__active-bar {
