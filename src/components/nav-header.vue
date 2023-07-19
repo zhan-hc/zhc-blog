@@ -5,8 +5,8 @@
       <span class="author">前端笨鸟</span>
     </div>
     <div class="header-tags">
-      <div class="tag active">Home</div>
-      <div class="tag">Category</div>
+      <router-link to="/" class="tag">Home</router-link>
+      <router-link to="/nav" class="tag">Nav</router-link>
       <i class="iconfont icon-expand" @click="toggleExpand"></i>
     </div>
   </div>
@@ -18,8 +18,8 @@
         <span>Home</span>
       </div>
       <div class="tag">
-        <i class="iconfont icon-category"></i>
-        <span>Category</span>
+        <i class="iconfont icon-menu"></i>
+        <span>Nav</span>
       </div>
     </div>
   </Transition>
@@ -55,8 +55,8 @@
       .author {
         font-size: 20px;
         font-weight: bold;
-        color: $primary-color;
-        letter-spacing: 2px;
+        color: $primary-color-sub;
+        letter-spacing: 3px;
       }
       .logo {
         width: 24px;
@@ -70,7 +70,8 @@
         font-weight: bold;
         color: rgba(0, 0, 0, 0.3);
         margin-right: 20px;
-        &.active {
+        text-decoration: none;
+        &.router-link-exact-active {
           color: rgba(0, 0, 0, 0.9);
         }
         &:hover {
@@ -84,6 +85,7 @@
       .icon-expand {
         display: none;
         font-size: 24px;
+        color: $blog-color-gray-1;
       }
     }
   }

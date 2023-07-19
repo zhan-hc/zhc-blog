@@ -6,6 +6,34 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "2742629",
+      "name": "点赞",
+      "font_class": "upvote",
+      "unicode": "e668",
+      "unicode_decimal": 58984
+    },
+    {
+      "icon_id": "4936668",
+      "name": "eye-fill",
+      "font_class": "view",
+      "unicode": "e869",
+      "unicode_decimal": 59497
+    },
+    {
+      "icon_id": "5950864",
+      "name": "评论-面",
+      "font_class": "comment",
+      "unicode": "e634",
+      "unicode_decimal": 58932
+    },
+    {
+      "icon_id": "26267597",
+      "name": "juejin",
+      "font_class": "juejin",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
+    },
+    {
       "icon_id": "33519",
       "name": "home_fill",
       "font_class": "home",
@@ -15,7 +43,7 @@
     {
       "icon_id": "20113338",
       "name": "bxs-category",
-      "font_class": "category",
+      "font_class": "menu",
       "unicode": "e6a2",
       "unicode_decimal": 59042
     },

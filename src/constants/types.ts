@@ -11,9 +11,28 @@ export interface JumpType {
   jump_id: number;
   jump_tag: string;
   jump_desc: string;
-  active?: boolean
+  active?: boolean;
 }
 
 export interface LinkListType extends JumpType {
-  children?: LinksType
+  children?: LinksType;
+}
+
+export interface authorInfoType {
+  name: string;
+  desc: string;
+  avatarUrl: string;
+  account: Array<acountType>
+}
+
+export interface acountType {
+  label: string;
+  url: string;
+  type: operateType;
+  icon: string;
+}
+
+export enum operateType {
+  OPEN = 1,
+  COPY,
 }

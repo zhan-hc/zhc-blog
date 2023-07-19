@@ -1,1 +1,27 @@
-export const MODULES = {}
+import { authorInfoType, operateType } from "./types"
+
+export const AuthorInfo: authorInfoType = {
+  name: '前端笨鸟',
+  desc: '别说路不平,只是你不行',
+  avatarUrl: 'https://zhan-hc.github.io/img/avatar.jpg',
+  account: [
+    {
+      label: 'github',
+      url: 'https://github.com/zhan-hc',
+      type: operateType.OPEN,
+      icon: 'icon-github'
+    },
+    {
+      label: '掘金',
+      url: 'https://juejin.cn/user/1433418895468829',
+      type: operateType.OPEN,
+      icon: 'icon-juejin'
+    },
+    {
+      label: '微信',
+      url: 'HC--ZHAN',
+      type: operateType.COPY,
+      icon: 'icon-wechat'
+    }
+  ]
+}
