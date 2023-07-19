@@ -52,7 +52,6 @@ export default function () {
         entries.forEach((entry) => {
           if (entry.isIntersecting) { // 目标元素出现在可视区
             const Index = Number(entry.target.id.replace('nav-bar_', ''))
-            console.log(entry.boundingClientRect.top, 'entry.boundingClientRect.top')
             // 根据滚动方向来判断最顶部或者最底部出现的元素
             if (state.isScrollingDown && entry.boundingClientRect.bottom >= window.innerHeight) {
               activeTabIndex(Index)
