@@ -1,6 +1,6 @@
-import { authorInfoType, operateType } from "./types"
+import { AuthorInfoType, OperateType } from "./types"
 
-export const AuthorInfo: authorInfoType = {
+export const AuthorInfo: AuthorInfoType = {
   name: '前端笨鸟',
   desc: '别说路不平,只是你不行',
   avatarUrl: 'https://zhan-hc.github.io/img/avatar.jpg',
@@ -8,19 +8,19 @@ export const AuthorInfo: authorInfoType = {
     {
       label: 'github',
       url: 'https://github.com/zhan-hc',
-      type: operateType.OPEN,
+      type: OperateType.OPEN,
       icon: 'icon-github'
     },
     {
       label: '掘金',
       url: 'https://juejin.cn/user/1433418895468829',
-      type: operateType.OPEN,
+      type: OperateType.OPEN,
       icon: 'icon-juejin'
     },
     {
       label: '微信',
       url: 'HC--ZHAN',
-      type: operateType.COPY,
+      type: OperateType.COPY,
       icon: 'icon-wechat'
     }
   ]

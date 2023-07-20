@@ -18,21 +18,25 @@ export interface LinkListType extends JumpType {
   children?: LinksType;
 }
 
-export interface authorInfoType {
+export interface AuthorInfoType {
   name: string;
   desc: string;
   avatarUrl: string;
-  account: Array<acountType>
+  account: Array<AcountType>
 }
 
-export interface acountType {
+export interface AcountType {
   label: string;
   url: string;
-  type: operateType;
+  type: OperateType;
   icon: string;
 }
+export interface ArticleMenu {
+  level: number;
+  content: string;
+}
 
-export enum operateType {
+export enum OperateType {
   OPEN = 1,
   COPY,
 }

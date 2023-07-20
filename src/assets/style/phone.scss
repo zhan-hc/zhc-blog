@@ -30,4 +30,14 @@
   .author-card {
     display: none !important;
   }
+  /*article*/ 
+  .article-container {
+    padding: 20px !important;
+    .article-menu {
+      display: none;
+    }
+    .article-main {
+      width: 100vw;
+    }
+  }
 }

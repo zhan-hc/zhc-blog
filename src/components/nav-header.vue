@@ -37,6 +37,7 @@
 
 <style scoped lang='scss'>
   .nav-header {
+    z-index: 4;
     position: fixed;
     top: 0;
     left: 0;
@@ -52,6 +53,7 @@
     .header-left {
       display: flex;
       align-items: center;
+      flex-shrink: 0;
       .author {
         font-size: 20px;
         font-weight: bold;

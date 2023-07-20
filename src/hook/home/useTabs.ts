@@ -2,21 +2,20 @@ import { toRefs, reactive, onMounted, nextTick } from 'vue'
 import { getJumpTypes } from '../../api/jump'
 import { getLinks } from '../../api/links';
 import { JumpType, LinkListType } from '../../constants/types'
+import useScrollMenu from '../common/useScrollMenu';
 
 export default function () {
   const state: {
     tabs: JumpType[];
     linkList: LinkListType[];
-    scrollTop: number;
-    isScrollingDown: boolean;
     isObserving: boolean;
   } = reactive({
     tabs: [],
     linkList: [],
-    scrollTop: 0,
-    isScrollingDown: true,
     isObserving: false
   })
+
+  const { isScrollingDown, getScrollDirection} = useScrollMenu()
 
   const tabClick = (index: number) => {
     const navList =  document.querySelectorAll('.tab-list')
@@ -38,11 +37,7 @@ export default function () {
 
   const handleScroll = (e: Event) => {
     observeNavBar()
-    const target = e.target as HTMLElement
-    const scrollTop = target.scrollTop
-    state.isScrollingDown = state.scrollTop <= scrollTop
-    state.scrollTop = scrollTop
-    
+    getScrollDirection(e)
   }
   // 监听出现的导航栏元素
   const observeNavBar = () => {
@@ -53,9 +48,9 @@ export default function () {
           if (entry.isIntersecting) { // 目标元素出现在可视区
             const Index = Number(entry.target.id.replace('nav-bar_', ''))
             // 根据滚动方向来判断最顶部或者最底部出现的元素
-            if (state.isScrollingDown && entry.boundingClientRect.bottom >= window.innerHeight) {
+            if (isScrollingDown && entry.boundingClientRect.bottom >= window.innerHeight) {
               activeTabIndex(Index)
-            } else if (!state.isScrollingDown && entry.boundingClientRect.top <= 64) {
+            } else if (!isScrollingDown && entry.boundingClientRect.top <= 64) {
               activeTabIndex(Index)
             }
           }

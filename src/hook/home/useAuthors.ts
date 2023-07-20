@@ -1,6 +1,6 @@
 import { useClipboard } from "@vueuse/core";
-import { acountType } from '@/constants/types';
-import { operateType } from "../../constants/types";
+import { AcountType } from '@/constants/types';
+import { OperateType } from "../../constants/types";
 
 export default function () {
 const { copy, isSupported } = useClipboard()
@@ -9,12 +9,12 @@ const { copy, isSupported } = useClipboard()
  * 账号点击
  * @param item 
  */
-const accountClick = (item: acountType) => {
+const accountClick = (item: AcountType) => {
   switch(item.type) {
-    case operateType.OPEN:
+    case OperateType.OPEN:
       window.open(item.url)
       break;
-    case operateType.COPY:
+    case OperateType.COPY:
       handleCopy(item.url)
       break;
     default:
