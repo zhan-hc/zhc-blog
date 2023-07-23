@@ -1,4 +1,4 @@
-import axios, { AxiosInstance, AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
 import { RequestOptions} from './type'
 import { AxiosCanceler } from './cancel'
 import { handleNetworkError } from './tool';
@@ -46,7 +46,7 @@ class MyAxios {
     )
   }
 
-  request<T>(config: InternalAxiosRequestConfig): Promise<[any, T | undefined]> {
+  request<T>(config: AxiosRequestConfig): Promise<[any, T | undefined]> {
     return new Promise((resolve, reject) => {
       this.instance.request<any, T>(config).then((res:any) => {
         const { data } = res.data

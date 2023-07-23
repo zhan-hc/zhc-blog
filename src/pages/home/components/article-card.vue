@@ -3,34 +3,49 @@
     <div class="article-header">
       <div class="article-author">张三</div>
       <div class="dividing"></div>
-      <div class="article-date">两天前</div>
+      <div class="article-date">{{ dayjs(props.data.create_time).format('YYYY-MM-DD') }}</div>
       <div class="dividing"></div>
-      <div class="article-tag">前端</div>
+      <div class="article-tag">
+        <span v-for="(tag, i) in props.data.article_tag" :key="i" style="margin-right: 10px;">{{tag}}</span>
+      </div>
     </div>
     <div class="article-content">
       <div class="article-info">
-        <div class="article-title ellipsis">✍🏻 聊聊工程化Docker的最佳实验 ｜ 有奖征文</div>
-        <div class="article-desc ellipsis-2">本次技术专题带大家聊聊 「工程化Docker」，无论你是开发人员、运维人员、架构师还是技术爱好者，都可以分享过往的经验和见解，与其掘友一起探讨和学习！</div>
+        <div class="article-title ellipsis">{{ props.data.article_title }}</div>
+        <div class="article-desc ellipsis-2">{{ props.data.article_desc }}</div>
         <div class="article-indicator">
           <i class="iconfont icon-upvote"></i>
-          <span class="indicator">111</span>
+          <span class="indicator">{{ props.data.article_like }}</span>
           <i class="iconfont icon-view"></i>
-          <span class="indicator">111</span>
+          <span class="indicator">{{ props.data.article_view }}</span>
           <i class="iconfont icon-comment"></i>
           <span class="indicator">111</span>
         </div>
       </div>
-      <img src="https://zhan-hc.github.io/2022/07/21/js-balance/balance.jpg" alt="">
+      <img class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="">
     </div>
   </div>
 </template>
 
 <script lang='ts' setup>
+import dayjs from 'dayjs'
+import { ArticleType } from '@/constants/types';
+
+const props = defineProps({
+  data: {
+    type: Object as () => ArticleType,
+    default: () => ({} as ArticleType)
+  }
+})
+
 </script>
 
 <style scoped lang='scss'>
   .article-card {
     padding: 15px;
+    &:hover {
+      cursor: pointer;
+    }
     .article-header {
       display: flex;
       font-size: 12px;
@@ -68,11 +83,12 @@
           }
         }
       }
-      img {
+      .article-cover {
         width: 120px;
         height: 80px;
         margin-left: 8px;
         border-radius: 2px;
+        object-fit: cover;
       }
     }
   }

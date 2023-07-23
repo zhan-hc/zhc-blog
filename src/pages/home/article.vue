@@ -3,7 +3,7 @@
     <div class="article-main card">
       <div class="article-title">彻底弄懂Promise，并带你手写</div>
       <div class="article-info">
-        <span class="mr-10">2022-04-06 16:00</span>
+        <span class="article-time">{{dayjs(article?.create_time).format('YYYY-MM-DD hh:mm:ss')}}</span>
         <span class="iconfont icon-view mr-10"></span>
         <span>460</span>
       </div>
@@ -16,8 +16,10 @@
 </template>
 
 <script lang='ts' setup>
+import dayjs from 'dayjs'
 import useArticle from '@/hook/article/useArticle'
-const { content, menu, activeMenuIndex, setMenuStyle, handleScroll } = useArticle()
+
+const { article, content, menu, activeMenuIndex, setMenuStyle, handleScroll } = useArticle()
 </script>
 
 <style scoped lang='scss'>
@@ -44,6 +46,9 @@ const { content, menu, activeMenuIndex, setMenuStyle, handleScroll } = useArticl
         margin: 15px 0;
         font-size: 14px;
         color: $blog-font-2;
+        .article-time {
+          margin-right: 15px;
+        }
         .mr-10 {
           margin-right: 10px;
         }
@@ -51,7 +56,7 @@ const { content, menu, activeMenuIndex, setMenuStyle, handleScroll } = useArticl
     }
     .article-menu {
       position: sticky;
-      top: 84px;
+      top: 0;
       width: 200px;
       height: auto;
       flex-shrink: 0;
