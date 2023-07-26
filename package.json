@@ -5,8 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "vite --host 0.0.0.0 --mode dev",
-    "dev:prod": "vite --host 0.0.0.0",
-    "build": "vue-tsc && vite build",
+    "dev:prod": "vite --host 0.0.0.0 --mode prod",
+    "build": "vue-tsc && vite build --mode prod",
     "preview": "vite preview"
   },
   "dependencies": {

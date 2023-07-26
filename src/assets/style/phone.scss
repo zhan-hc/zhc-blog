@@ -12,24 +12,32 @@
       }
     }
   }
+  /*顶部导航*/
   .nav-fill {
     height: 56px !important;
   }
   .header-expand {
     display: block;
   }
-  /* 左边菜单*/
+  /*首页*/
+  .home-container {
+    .home-right {
+      display: none;
+    }
+  }
+  /*nav*/
   .menu-bar {
     display: none;
   }
-  /**/
   .tab-content {
     padding: 20px !important;
   }
+
   /*author*/
   .author-card {
     display: none !important;
   }
+
   /*article*/ 
   .article-container {
     padding: 20px !important;

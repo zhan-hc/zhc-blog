@@ -13,14 +13,14 @@
   <div class="nav-fill"></div>
   <Transition name="slide-fade">
     <div class="header-expand" v-show="expandStatus">
-      <div class="tag">
+      <a class="tag" href="/">
         <i class="iconfont icon-home"></i>
         <span>Home</span>
-      </div>
-      <div class="tag">
+      </a>
+      <a class="tag" href="/nav">
         <i class="iconfont icon-menu"></i>
         <span>Nav</span>
-      </div>
+      </a>
     </div>
   </Transition>
 </template>
@@ -88,10 +88,14 @@
         display: none;
         font-size: 24px;
         color: $blog-color-gray-1;
+        &:hover {
+          cursor: pointer;
+        }
       }
     }
   }
   .header-expand {
+    z-index: 2;
     position: absolute;
     top: 56px;
     width: 100%;
@@ -104,6 +108,7 @@
       color: #262626;
     }
     .tag {
+      display: block;
       padding: 10px 10px;
       font-weight: bold;
     }
