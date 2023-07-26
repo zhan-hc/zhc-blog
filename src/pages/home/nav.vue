@@ -1,37 +1,53 @@
 <template>
-  <menu-bar :tabs="tabs" @tabClick="tabClick"></menu-bar>
-  <div class="tab-content" @scroll="handleScroll">
-    <div class="tab-list card" v-for="(tab, i) in linkList" :key="i" :id="`nav-bar_${i}`">
-      <div class="tab-tag">
-        <span>{{ tab.jump_tag }}</span>
-        <span>{{ tab.jump_desc }}</span>
-      </div>
-      <div class="tag-container">
-        <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="handleJump(link.link_url)" :data-title="link.link_desc || link.link_name">
-          <img v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="">
-          <span class="tag-name ellipsis">{{ link.link_name }}</span>
+  <div class="tab-container">
+    <menu-bar :tabs="tabs" class="tab-menu"></menu-bar>
+    <div class="tab-content" @scroll="handleScroll">
+      <div class="tab-list card" v-for="(tab, i) in linkList" :key="i" :id="`nav-bar_${i + 1}`">
+        <div class="tab-tag">
+          <span>{{ tab.jump_tag }}</span>
+          <span>{{ tab.jump_desc }}</span>
+        </div>
+        <div class="tag-container">
+          <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="handleJump(link.link_url)" :data-title="link.link_desc || link.link_name">
+            <img v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="">
+            <span class="tag-name ellipsis">{{ link.link_name }}</span>
+          </div>
         </div>
       </div>
     </div>
   </div>
+  
 </template>
 
 <script lang='ts' setup>
   import MenuBar from './components/menu-bar.vue'
   import useTabs from '@/hook/home/useTabs'
-  const { tabs, tabClick, linkList, handleJump, handleScroll } = useTabs()
+  const { tabs, linkList, handleJump, handleScroll } = useTabs()
 </script>
 
 <style scoped lang='scss'>
+.tab-container {
+  display: flex;
+  align-items: flex-start;
+  max-width: 1200px;
+  margin: 0 auto;
+  box-sizing: border-box;
+  .tab-menu {
+    margin-top: 20px;
+    margin-right: 20px;
+    flex-shrink: 0;
+  }
   .tab-content {
-    padding: 20px 200px;
     height: calc(100vh - 64px);
     box-sizing: border-box;
     overflow-y: scroll;
+    &::-webkit-scrollbar {
+      display: none;
+    }
     .tab-list {
       display: flex;
       flex-direction: column;
-      margin-bottom: 20px;
+      margin: 20px;
       padding: 20px 20px 0;
       .tab-tag {
         padding-bottom: 10px;
@@ -93,4 +109,6 @@
       }
     }
   }
+}
+  
 </style>

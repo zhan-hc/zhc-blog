@@ -20,7 +20,7 @@ export default function () {
 
   const route = useRoute()
   
-  const { isScrollingDown, getScrollDirection } = useScrollMenu()
+  const { getScrollDirection } = useScrollMenu() // isScrollingDown, 
   
   const extractHTags = (htmlString: string):ArticleMenu[] => {
     const pattern = /<h([1-6])[^>]*>(.*?)<\/h\1>/gi;
@@ -45,12 +45,13 @@ export default function () {
 
   const handleScroll = (e: Event) => {
     getScrollDirection(e)
-    const menuList = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
-    
+    // const menuList = document.querySelectorAll('h1, h2, h3, h4, h5, h6')
   }
 
   onMounted(async () => {
-    const [err, {article = {}, content = '' }] = await getArticleDetail(route.params.id as string)
+    const [err, {article = {}, content = '' }]:any = await getArticleDetail(route.params.id as string)
+    console.log(err)
+    state.article = article
     state.content = content
     state.menu = extractHTags(state.content)
     state.minMenuLevel = Math.min(...state.menu.map(item => item.level))

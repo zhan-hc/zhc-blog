@@ -1,5 +1,4 @@
 import { toRefs, reactive } from 'vue'
-import useScrollMenu from '../common/useScrollMenu';
 export default function () {
   const state: {
     scrollTop: number;

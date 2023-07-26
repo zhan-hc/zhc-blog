@@ -1,7 +1,7 @@
 <template>
   <div class="article-container" @scroll="handleScroll">
     <div class="article-main card">
-      <div class="article-title">彻底弄懂Promise，并带你手写</div>
+      <div class="article-title">{{article?.article_title}}</div>
       <div class="article-info">
         <span class="article-time">{{dayjs(article?.create_time).format('YYYY-MM-DD hh:mm:ss')}}</span>
         <span class="iconfont icon-view mr-10"></span>

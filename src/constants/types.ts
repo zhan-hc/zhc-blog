@@ -16,6 +16,7 @@ export interface JumpType {
 
 export interface LinkListType extends JumpType {
   children?: LinksType;
+  jump_links?: LinksType[]
 }
 
 export interface AuthorInfoType {

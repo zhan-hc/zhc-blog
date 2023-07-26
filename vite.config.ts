@@ -1,8 +1,8 @@
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
-import { resolve } from "path"
+import path, { resolve } from "path"
+import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 
-// https://vitejs.dev/config/
 export default defineConfig({
   server: {
     port: 4000, // 设置服务启动端口号
@@ -10,13 +10,21 @@ export default defineConfig({
     // cors: true, // 允许跨域
     proxy: {
       '/api': {
-        target: 'http://192.168.0.6:3000',
+        target: 'http://43.138.89.227:3000',
         changeOrigin: true, //是否跨域
         rewrite: (path) => path.replace(/^\/api/, '')
       }
     }
   },
-  plugins: [vue()],
+  plugins: [
+    vue(),
+    createSvgIconsPlugin({
+      // 图标文件夹为src/assets/icons
+      iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
+      // 指定symbolId格式
+      symbolId: 'icon-[dir]-[name]'
+    })
+  ],
   css: {
     preprocessorOptions: {
       scss: {

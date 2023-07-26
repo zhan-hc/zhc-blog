@@ -1,7 +1,7 @@
 <template>
   <div class="menu-bar card">
     <div class="menu-item" v-for="(tab, i) in tabs" :key="i" @click="tabClick(i)">
-      <span class="ellipsis">{{tab.jump_tag}}</span>
+      <a class="ellipsis" :href="`#nav-bar_${i + 1}`">{{tab.jump_tag}}</a>
     </div>
     <div v-if="tabs.length" class="menu__active-bar" :style="barStyle"></div>
   </div>
@@ -17,7 +17,7 @@
       default: () => []
     }
   })
-  const emits = defineEmits(['tabClick'])
+  // const emits = defineEmits(['tabClick'])
 
   const barStyle = ref<CSSProperties>()
 
@@ -33,7 +33,6 @@
     props.tabs.map((tab: any, i) => {
       tab.active = i === index
     })
-    emits('tabClick', index)
   }
   
   watch(
@@ -50,10 +49,10 @@
 
 <style scoped lang='scss'>
 .menu-bar {
-  position: fixed;
-  left: 50px;
-  top: 84px;
+  position: relative;
   max-height: 500px;
+  background: #ffffff;
+  border-radius: 6px;
   overflow-y: scroll;
   .menu-item {
     position: relative;

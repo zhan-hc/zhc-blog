@@ -1,4 +1,4 @@
-import { toRefs, reactive, onMounted, nextTick } from 'vue'
+import { toRefs, reactive, onMounted } from 'vue'
 import { getJumpTypes } from '../../api/jump'
 import { getLinks } from '../../api/links';
 import { JumpType, LinkListType } from '../../constants/types'
@@ -16,11 +16,6 @@ export default function () {
   })
 
   const { isScrollingDown, getScrollDirection} = useScrollMenu()
-
-  const tabClick = (index: number) => {
-    const navList =  document.querySelectorAll('.tab-list')
-    navList[index].scrollIntoView()
-  }
 
   const activeTabIndex = (index: number) => {
       state.tabs = state.tabs.map((item: JumpType, i:number) => {
@@ -48,10 +43,11 @@ export default function () {
           if (entry.isIntersecting) { // 目标元素出现在可视区
             const Index = Number(entry.target.id.replace('nav-bar_', ''))
             // 根据滚动方向来判断最顶部或者最底部出现的元素
-            if (isScrollingDown && entry.boundingClientRect.bottom >= window.innerHeight) {
-              activeTabIndex(Index)
-            } else if (!isScrollingDown && entry.boundingClientRect.top <= 64) {
-              activeTabIndex(Index)
+            if (isScrollingDown.value && entry.boundingClientRect.bottom >= window.innerHeight) {
+              activeTabIndex(Index - 1)
+            } else if (!isScrollingDown.value && entry.boundingClientRect.top <= 64) {
+              // 触发向上滚动
+              activeTabIndex(Index - 1)
             }
           }
         })
@@ -65,15 +61,15 @@ export default function () {
 
   onMounted(async () => {
     const [tabRes, linkRes] = await Promise.all([getJumpTypes(), getLinks()])
-    const [err1, {jump: tabs = []}] = tabRes
-    const [err2, {links = []}] = linkRes
+    const [err1, {jump: tabs = []}]:any = tabRes
+    const [err2, {links = []}]:any = linkRes
+    console.log(err1, err2)
     state.tabs = tabs
     state.linkList = links
     activeTabIndex(0)
   })
   return {
     ...toRefs(state),
-    tabClick,
     handleJump,
     handleScroll
   }

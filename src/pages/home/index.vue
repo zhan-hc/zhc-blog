@@ -2,6 +2,7 @@
   <div class="home-container">
     <div class="home-main">
       <article-card v-for="article in state.articleList" :key="article.article_id" :data="article" @click="goDetail(article.article_id)"></article-card>
+      <empty-state v-if="!state.articleList.length"/>
     </div>
     <div class="home-right">
       <author-card></author-card>
@@ -13,6 +14,7 @@
 import { onMounted, reactive } from 'vue'
 import authorCard from './components/author-card.vue'
 import articleCard from './components/article-card.vue'
+import emptyState from '@/components/empty-state.vue'
 import { getArticleList } from '@/api/atricle'
 import { ArticleType } from '@/constants/types'
 import { useRouter } from 'vue-router'
@@ -29,7 +31,8 @@ const goDetail = (id: number) => {
 }
 
 onMounted(async () => {
-  const [err, { articleList = [] }] = await getArticleList()
+  const [err, { articleList = [] }]:any = await getArticleList()
+  console.log(err)
   state.articleList = articleList.map((item: ArticleType) => {
     return {
       ...item,
