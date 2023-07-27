@@ -4,6 +4,7 @@ export interface LinksType {
   link_name: string;
   link_desc: string;
   link_url: string;
+  link_priority: number;
   jump_id: number;
 }
 
@@ -11,6 +12,7 @@ export interface JumpType {
   jump_id: number;
   jump_tag: string;
   jump_desc: string;
+  jump_priority: number;
   active?: boolean;
 }
 
