@@ -41,11 +41,11 @@
   /*article*/ 
   .article-container {
     padding: 20px !important;
-    .article-menu {
+    .article-minor {
       display: none;
     }
     .article-main {
-      width: 100vw;
+      width: calc(100vw - 46px);
     }
   }
 }
