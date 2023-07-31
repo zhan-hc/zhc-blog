@@ -21,6 +21,22 @@ export interface LinkListType extends JumpType {
   jump_links?: LinksType[]
 }
 
+export interface TagType {
+  tag_id: number;
+  tag_name: string;
+  tag_desc: string;
+  create_time: Date;
+  update_time: Date;
+}
+
+export interface CategoryType {
+category_id: number;
+category_name: string;
+category_desc: string;
+create_time: Date;
+update_time: Date;
+}
+
 export interface AuthorInfoType {
   name: string;
   desc: string;
@@ -44,7 +60,7 @@ export interface ArticleType {
   article_content: string;
   article_like: number;
   article_view: number;
-  article_url: string;
+  category_id: number;
   article_cover: string;
 }
 export interface ArticleMenu {

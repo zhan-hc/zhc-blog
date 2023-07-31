@@ -1,25 +1,43 @@
 <template>
-  <div class="article-container" @scroll="handleScroll">
+  <div class="article-container" @scroll="handleScroll($event, setActiveMenu)">
     <div class="article-main card">
       <div class="article-title">{{article?.article_title}}</div>
       <div class="article-info">
-        <span class="article-time">{{dayjs(article?.create_time).format('YYYY-MM-DD hh:mm:ss')}}</span>
+        <span class="article-time">{{formatDate(article?.create_time, 'YYYY-MM-DD hh:mm:ss')}}</span>
         <span class="iconfont icon-view mr-10"></span>
-        <span>460</span>
+        <span>{{ article?.article_view }}</span>
       </div>
-      <div class="article-content markdown-body" v-html="content"></div>
+      <div class="article-content markdown-body" v-html="addIndexToHtml(content)"></div>
     </div>
-    <div class="article-menu card">
-      <div class="menu-item" v-for="(item, i) in menu" :key="i" :class="{active: i === activeMenuIndex}" :style="setMenuStyle(item)">{{ item.content }}</div>
+    <div class="article-minor">
+      <author-card></author-card>
+      <div class="article-menu card">
+        <a class="menu-item" v-for="(item, i) in menu" :key="i" :href="`#article-menu_${i + 1}`" :class="{active: i === activeMenuIndex}" :style="setMenuStyle(item)">{{ item.content }}</a>
+      </div>
     </div>
+    
   </div>
 </template>
 
 <script lang='ts' setup>
-import dayjs from 'dayjs'
-import useArticle from '@/hook/article/useArticle'
+  import { watch } from 'vue';
+  import authorCard from './components/author-card.vue';
+  import useDate from '@/hook/common/useDate';
+  import useArticleDetail from '@/hook/article/useArticleDetail';
+  import useArticleMenu from '@/hook/article/useArticleMenu';
+  import useScrollAnchor from '@/hook/common/useScrollAnchor';
 
-const { article, content, menu, activeMenuIndex, setMenuStyle, handleScroll } = useArticle()
+  const { formatDate } = useDate()
+  const { article, content } = useArticleDetail()
+  const { menu, activeMenuIndex, setMenuStyle, getArticleMenu, setActiveMenu, addIndexToHtml } = useArticleMenu()
+  const { handleScroll } = useScrollAnchor('h', 'article-menu_')
+
+  watch(content, (newValue) => {
+    if (newValue) {
+      getArticleMenu(newValue)
+    }
+  })
+
 </script>
 
 <style scoped lang='scss'>
@@ -35,12 +53,12 @@ const { article, content, menu, activeMenuIndex, setMenuStyle, handleScroll } = 
     .article-main {
       flex: 1;
       flex-shrink: 0;
-      padding: 20px;
+      padding: 30px;
       box-sizing: border-box;
       .article-title {
         font-weight: bold;
         letter-spacing: 2px;
-        font-size: 24px;
+        font-size: 28px;
       }
       .article-info {
         margin: 15px 0;
@@ -54,18 +72,22 @@ const { article, content, menu, activeMenuIndex, setMenuStyle, handleScroll } = 
         }
       }
     }
-    .article-menu {
+    .article-minor {
       position: sticky;
       top: 0;
+      flex-shrink: 0;
       width: 200px;
       height: auto;
-      flex-shrink: 0;
-      margin-left: 20px;
+      padding-left: 20px;
+    }
+    .article-menu {
+      margin-top: 20px;
       padding: 20px;
       box-sizing: border-box;
       .menu-item {
+        display: block;
         margin-bottom: 10px;
-        font-size: 16px;
+        font-size: 14px;
         &.active {
           color: $primary-color-active !important;
           font-weight: bold;
@@ -73,6 +95,9 @@ const { article, content, menu, activeMenuIndex, setMenuStyle, handleScroll } = 
         &:hover {
           cursor: pointer;
           color: $primary-color !important;
+        }
+        &:last-child {
+          margin-bottom: 0;
         }
       }
     }

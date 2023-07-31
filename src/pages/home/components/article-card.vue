@@ -1,25 +1,29 @@
 <template>
   <div class="card article-card">
     <div class="article-header">
-      <div class="article-author">张三</div>
+      <div class="article-author">前端笨鸟</div>
       <div class="dividing"></div>
-      <div class="article-date">{{ dayjs(props.data.create_time).format('YYYY-MM-DD') }}</div>
+      <div class="article-date">{{ formatDate(props.data.create_time, 'YYYY-MM-DD') }}</div>
       <div class="dividing"></div>
-      <div class="article-tag">
-        <span v-for="(tag, i) in props.data.article_tag" :key="i" style="margin-right: 10px;">{{tag}}</span>
+      <div class="article-category">
+        <span>{{ categoryObj[props.data.category_id] }}</span>
+      </div>
+      <div class="dividing" v-if="props.data.article_tag"></div>
+      <div class="article-tag" v-if="props.data.article_tag">
+        <span v-for="item in props.data.article_tag.split(',')" :key="item" style="margin-right: 10px;">{{ tagObj[item] }}</span>
       </div>
     </div>
     <div class="article-content">
       <div class="article-info">
         <div class="article-title ellipsis">{{ props.data.article_title }}</div>
-        <div class="article-desc ellipsis-2">{{ props.data.article_desc }}</div>
+        <div class="article-desc ellipsis-2">{{ props.data.article_desc || props.data.article_content.replace(/(?:\*\*|__)(.*?)(?:\*\*|__)|\[(.*?)\]\(.*?\)|[#`*_+-]/g, '$1$2') }}</div>
         <div class="article-indicator">
           <i class="iconfont icon-upvote"></i>
           <span class="indicator">{{ props.data.article_like }}</span>
           <i class="iconfont icon-view"></i>
           <span class="indicator">{{ props.data.article_view }}</span>
           <i class="iconfont icon-comment"></i>
-          <span class="indicator">111</span>
+          <span class="indicator">1</span>
         </div>
       </div>
       <img class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="">
@@ -28,8 +32,10 @@
 </template>
 
 <script lang='ts' setup>
-import dayjs from 'dayjs'
 import { ArticleType } from '@/constants/types';
+import useDate from '@/hook/common/useDate';
+import { useArticleStore } from '@/store/article';
+import { storeToRefs } from 'pinia';
 
 const props = defineProps({
   data: {
@@ -37,6 +43,10 @@ const props = defineProps({
     default: () => ({} as ArticleType)
   }
 })
+
+const { formatDate } = useDate()
+const store = useArticleStore()
+const { tagObj, categoryObj } = storeToRefs(store)
 
 </script>
 

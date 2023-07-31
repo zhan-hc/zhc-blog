@@ -1,14 +1,14 @@
 <template>
   <div class="tab-container">
-    <menu-bar :tabs="tabs" class="tab-menu"></menu-bar>
-    <div class="tab-content" @scroll="handleScroll">
+    <menu-bar :tabs="jumpTabs" class="tab-menu"></menu-bar>
+    <div class="tab-content" @scroll="handleScroll($event, activeTabIndex)">
       <div class="tab-list card" v-for="(tab, i) in linkList" :key="i" :id="`nav-bar_${i + 1}`">
         <div class="tab-tag">
           <span>{{ tab.jump_tag }}</span>
           <span>{{ tab.jump_desc }}</span>
         </div>
         <div class="tag-container">
-          <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="handleJump(link.link_url)" :data-title="link.link_desc || link.link_name">
+          <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="openWindow(link.link_url)" :data-title="link.link_desc || link.link_name">
             <img v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="">
             <span class="tag-name ellipsis">{{ link.link_name }}</span>
           </div>
@@ -21,8 +21,15 @@
 
 <script lang='ts' setup>
   import MenuBar from './components/menu-bar.vue'
-  import useTabs from '@/hook/home/useTabs'
-  const { tabs, linkList, handleJump, handleScroll } = useTabs()
+  import useScrollAnchor from '@/hook/common/useScrollAnchor'
+  import useLink from '@/hook/nav/useLink'
+  import useJump from '@/hook/nav/useJump'
+  import useRouter from '@/hook/common/useRouter'
+  
+  const { openWindow } = useRouter()
+  const { linkList } = useLink()
+  const { jumpTabs, activeTabIndex } = useJump()
+  const { handleScroll } = useScrollAnchor()
 </script>
 
 <style scoped lang='scss'>
@@ -111,4 +118,4 @@
   }
 }
   
-</style>
+</style>@/hook/home/useScrollAnchor@/hook/common/useScrollAnchor
