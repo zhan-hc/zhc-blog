@@ -25,3 +25,7 @@ export const AuthorInfo: AuthorInfoType = {
     }
   ]
 }
+export const STATISTICS_TYPE = {
+  'CATEGORY': 1,
+  'TAG': 2
+}

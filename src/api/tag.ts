@@ -9,3 +9,9 @@ export const getTagList = () => {
     method: 'GET'
   })
 }
+export const getTagCount = () => {
+  return MyRequest.request({
+    url: '/tag/groupTag',
+    method: 'GET'
+  })
+}

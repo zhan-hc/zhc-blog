@@ -30,6 +30,13 @@
   margin: 0 8px;
 }
 
+.active-hover {
+  &:hover {
+    cursor: pointer;
+    color: $primary-color;
+  }
+}
+
 /*a标签*/
 a {
   color: inherit;

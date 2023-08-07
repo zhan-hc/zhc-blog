@@ -72,3 +72,21 @@ export enum OperateType {
   OPEN = 1,
   COPY,
 }
+export interface BuryReportType {
+  event_id?: number;
+  event_name: string;
+  event_type: string;
+  page_url: string;
+  timestamp: number;
+  user_id: string;
+}
+export interface categorySticsType {
+  category_id: number;
+  category_name: string;
+  count: number;
+}
+export interface tagSticsType {
+  tag_id: number;
+  tag_name: string;
+  count: number;
+}

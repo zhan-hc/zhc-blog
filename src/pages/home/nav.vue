@@ -8,7 +8,7 @@
           <span>{{ tab.jump_desc }}</span>
         </div>
         <div class="tag-container">
-          <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="openWindow(link.link_url)" :data-title="link.link_desc || link.link_name">
+          <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="toNavUrl(link)" :data-title="link.link_desc || link.link_name">
             <img v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="">
             <span class="tag-name ellipsis">{{ link.link_name }}</span>
           </div>
@@ -25,18 +25,26 @@
   import useLink from '@/hook/nav/useLink'
   import useJump from '@/hook/nav/useJump'
   import useRouter from '@/hook/common/useRouter'
+  import useCollect from '@/hook/common/useCollect'
+import { LinksType } from '@/constants/types'
   
   const { openWindow } = useRouter()
   const { linkList } = useLink()
   const { jumpTabs, activeTabIndex } = useJump()
   const { handleScroll } = useScrollAnchor()
+  const { reportEvent } = useCollect()
+
+  const toNavUrl = (link: LinksType) => {
+    reportEvent(`${link.link_name}-${link.link_id}`)
+    openWindow(link.link_url)
+  }
 </script>
 
 <style scoped lang='scss'>
 .tab-container {
   display: flex;
   align-items: flex-start;
-  max-width: 1200px;
+  max-width: 1100px;
   margin: 0 auto;
   box-sizing: border-box;
   .tab-menu {

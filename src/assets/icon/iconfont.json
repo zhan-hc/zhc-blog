@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "212330",
+      "name": "tag_fill",
+      "font_class": "tag",
+      "unicode": "e751",
+      "unicode_decimal": 59217
+    },
+    {
+      "icon_id": "12347505",
+      "name": "category_24px_rounded",
+      "font_class": "category",
+      "unicode": "ed97",
+      "unicode_decimal": 60823
+    },
+    {
       "icon_id": "2742629",
       "name": "点赞",
       "font_class": "upvote",

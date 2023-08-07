@@ -21,6 +21,16 @@
   }
   /*首页*/
   .home-container {
+    .home-main {
+      width: calc(100vw - 40px) !important;
+      margin: 0 20px !important;
+      .article-item {
+        box-sizing: border-box;
+        .article-cover {
+          display: none;
+        }
+      }
+    }
     .home-right {
       display: none;
     }

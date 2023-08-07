@@ -5,7 +5,9 @@
       <empty-state v-if="!articleList.length"/>
     </div>
     <div class="home-right">
-      <author-card></author-card>
+      <author-card style="margin-bottom: 20px;"></author-card>
+      <category-card style="margin-bottom: 20px;" :data="categoryData"></category-card>
+      <tag-card :data="tagData"></tag-card>
     </div>
   </div>
 </template>
@@ -13,12 +15,17 @@
 <script lang='ts' setup>
 import useRouter from '@/hook/common/useRouter'
 import authorCard from './components/author-card.vue'
+import categoryCard from './components/category-card.vue'
+import tagCard from './components/tag-card.vue'
 import articleCard from './components/article-card.vue'
 import emptyState from '@/components/empty-state.vue'
 import useArticle from '@/hook/article/useArticle'
+import useStatistics from '@/hook/article/useStatistics'
+import { STATISTICS_TYPE } from '@/constants'
 
 const { routerGo } = useRouter()
 const { articleList } = useArticle()
+const { categoryData, tagData } = useStatistics([STATISTICS_TYPE.CATEGORY, STATISTICS_TYPE.TAG])
 
 </script>
 

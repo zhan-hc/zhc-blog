@@ -9,3 +9,9 @@ export const getCategoryList = () => {
     method: 'GET'
   })
 }
+export const getCategoryCount = () => {
+  return MyRequest.request({
+    url: '/category/groupCategory',
+    method: 'GET'
+  })
+}
