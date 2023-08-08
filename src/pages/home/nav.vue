@@ -35,7 +35,7 @@ import { LinksType } from '@/constants/types'
   const { reportEvent } = useCollect()
 
   const toNavUrl = (link: LinksType) => {
-    reportEvent(`${link.link_name}-${link.link_id}`)
+    reportEvent(`快捷导航-${link.link_name}-${link.link_id}`)
     openWindow(link.link_url)
   }
 </script>
