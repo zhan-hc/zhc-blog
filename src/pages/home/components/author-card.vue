@@ -1,6 +1,6 @@
 <template>
   <div class="card author-card">
-    <img class="author-avatar" :src="AuthorInfo.avatarUrl" alt="">
+    <img v-imgErr class="author-avatar" :src="AuthorInfo.avatarUrl" alt="头像">
     <div class="author-username">{{ AuthorInfo.name }}</div>
     <div class="author-desc">{{ AuthorInfo.desc }}</div>
     <div class="author-contact">

@@ -26,7 +26,7 @@
           <span class="indicator">1</span>
         </div>
       </div>
-      <img class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="">
+      <img v-imgErr class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="文章背景">
     </div>
   </div>
 </template>

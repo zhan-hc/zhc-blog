@@ -9,7 +9,7 @@
         </div>
         <div class="tag-container">
           <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="toNavUrl(link)" :data-title="link.link_desc || link.link_name">
-            <img v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="">
+            <img v-imgErr v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="图标">
             <span class="tag-name ellipsis">{{ link.link_name }}</span>
           </div>
         </div>
