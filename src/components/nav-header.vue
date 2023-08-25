@@ -12,26 +12,28 @@
   </div>
   <div class="nav-fill"></div>
   <Transition name="slide-fade">
-    <div class="header-expand" v-show="expandStatus">
-      <a class="tag" href="/">
+    <div class="header-expand" v-show="expandStatus" ref="header">
+      <router-link to="/" class="tag" @click.stop="toggleExpand">
         <i class="iconfont icon-home"></i>
         <span>Home</span>
-      </a>
-      <a class="tag" href="/nav">
+      </router-link>
+      <router-link to="/nav" class="tag" @click.stop="toggleExpand">
         <i class="iconfont icon-menu"></i>
         <span>Nav</span>
-      </a>
+      </router-link>
     </div>
   </Transition>
 </template>
 
 <script lang='ts' setup>
-  import { ref } from "vue";
-
+  import { ref } from "vue"
+  import { onClickOutside } from '@vueuse/core'
   const expandStatus = ref(false)
+  const header = ref(null)
   const toggleExpand = () => {
     expandStatus.value = !expandStatus.value
   }
+  onClickOutside(header, () => expandStatus.value && toggleExpand())
 
 </script>
 
@@ -70,7 +72,7 @@
       display: flex;
       .tag {
         font-weight: bold;
-        color: rgba(0, 0, 0, 0.3);
+        color: rgba(0, 0, 0, 0.6);
         margin-right: 20px;
         text-decoration: none;
         &.router-link-exact-active {
@@ -105,12 +107,23 @@
     box-sizing: border-box;
     .iconfont {
       margin-right: 5px;
-      color: #262626;
+      color: rgba(0, 0, 0, 0.5);
     }
     .tag {
       display: block;
       padding: 10px 10px;
       font-weight: bold;
+      color: rgba(0, 0, 0, 0.5);
+      &.router-link-exact-active {
+        color: rgba(0, 0, 0, 0.9);
+        .iconfont {
+          color: rgba(0, 0, 0, 0.9);
+        }
+      }
+      &:hover {
+        cursor: pointer;
+        color: rgba(0, 0, 0, 0.7);
+      }
     }
   }
   .nav-fill {
