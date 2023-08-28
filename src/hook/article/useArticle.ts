@@ -1,18 +1,14 @@
 import { onMounted, reactive, toRefs } from "vue";
 import { ArticleType } from "@/constants/types";
-import { getArticleList } from '@/api/atricle';
-import useTag from '@/hook/article/useTag';
-import useCategory from '@/hook/article/useCategory';
+import useRouter from '@/hook/common/useRouter'
+import { addArticleView, getArticleList } from '@/api/atricle';
 export default function () {
-  
+  const { routerGo } = useRouter()
   const state: {
     articleList: ArticleType[]
   } = reactive({
     articleList: []
   })
-
-  useTag()
-  useCategory()
 
   onMounted(async () => {
     const [err, { articleList = [] }]:any = await getArticleList()
@@ -20,7 +16,17 @@ export default function () {
     state.articleList = articleList
   })
 
+  const addViewCount = async (id: number) => {
+    await addArticleView(id)
+  }
+
+  const articleCardClick = (id: number) => {
+    addViewCount(id)
+    routerGo(`/article/${id}`)
+  }
+
   return {
-    ...toRefs(state)
+    ...toRefs(state),
+    articleCardClick
   }
 }

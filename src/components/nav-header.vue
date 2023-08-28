@@ -7,7 +7,7 @@
     <div class="header-tags">
       <router-link to="/" class="tag">Home</router-link>
       <router-link to="/nav" class="tag">Nav</router-link>
-      <i class="iconfont icon-expand" @click="toggleExpand"></i>
+      <i class="iconfont icon-expand" @click="expandStatus = true"></i>
     </div>
   </div>
   <div class="nav-fill"></div>
@@ -26,14 +26,14 @@
 </template>
 
 <script lang='ts' setup>
-  import { ref } from "vue"
+  import { Ref, ref } from "vue"
   import { onClickOutside } from '@vueuse/core'
   const expandStatus = ref(false)
-  const header = ref(null)
+  const header:Ref<HTMLElement|null> = ref(null)
   const toggleExpand = () => {
     expandStatus.value = !expandStatus.value
   }
-  onClickOutside(header, () => expandStatus.value && toggleExpand())
+  onClickOutside(header, () => { expandStatus.value = false })
 
 </script>
 

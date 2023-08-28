@@ -1,7 +1,7 @@
 <template>
   <div class="home-container">
     <div class="home-main">
-      <article-card class="article-item" v-for="article in articleList" :key="article.article_id" :data="article" @click="routerGo(`/article/${article.article_id}`)"></article-card>
+      <article-card class="article-item" v-for="article in articleList" :key="article.article_id" :data="article" @click="articleCardClick(article.article_id)"></article-card>
       <empty-state v-if="!articleList.length"/>
     </div>
     <div class="home-right">
@@ -13,18 +13,20 @@
 </template>
 
 <script lang='ts' setup>
-import useRouter from '@/hook/common/useRouter'
 import authorCard from './components/author-card.vue'
 import categoryCard from './components/category-card.vue'
 import tagCard from './components/tag-card.vue'
 import articleCard from './components/article-card.vue'
 import emptyState from '@/components/empty-state.vue'
 import useArticle from '@/hook/article/useArticle'
+import useTag from '@/hook/article/useTag';
+import useCategory from '@/hook/article/useCategory';
 import useStatistics from '@/hook/article/useStatistics'
 import { STATISTICS_TYPE } from '@/constants'
 
-const { routerGo } = useRouter()
-const { articleList } = useArticle()
+useTag()
+useCategory()
+const { articleList, articleCardClick } = useArticle()
 const { categoryData, tagData } = useStatistics([STATISTICS_TYPE.CATEGORY, STATISTICS_TYPE.TAG])
 
 </script>

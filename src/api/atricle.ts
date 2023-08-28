@@ -16,3 +16,10 @@ export const getArticleDetail = (id: string) => {
     params: { id }
   })
 }
+export const addArticleView = (id: number) => {
+  return MyRequest.request({
+    url: '/article/addArticleView',
+    method: 'POST',
+    data: { id }
+  })
+}
