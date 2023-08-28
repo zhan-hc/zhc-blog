@@ -6,14 +6,17 @@ export default function () {
   const { routerGo } = useRouter()
   const state: {
     articleList: ArticleType[]
+    loading: boolean
   } = reactive({
-    articleList: []
+    articleList: [],
+    loading: false
   })
 
   onMounted(async () => {
+    state.loading = true
     const [err, { articleList = [] }]:any = await getArticleList()
-    console.log(err)
     state.articleList = articleList
+    state.loading = false
   })
 
   const addViewCount = async (id: number) => {

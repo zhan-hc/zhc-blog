@@ -2,6 +2,9 @@ import { defineConfig, loadEnv } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import path, { resolve } from "path"
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
+import AutoImport from 'unplugin-auto-import/vite'
+import Components from 'unplugin-vue-components/vite'
+import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
 
 export default  ({ mode }) => { 
   process.env = {...process.env, ...loadEnv(mode, process.cwd())}
@@ -25,6 +28,12 @@ export default  ({ mode }) => {
         iconDirs: [path.resolve(process.cwd(), 'src/assets/svg')],
         // 指定symbolId格式
         symbolId: 'icon-[dir]-[name]'
+      }),
+      AutoImport({
+        resolvers: [ElementPlusResolver()],
+      }),
+      Components({
+        resolvers: [ElementPlusResolver()],
       })
     ],
     css: {

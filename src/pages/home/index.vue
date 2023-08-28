@@ -1,8 +1,9 @@
 <template>
   <div class="home-container">
     <div class="home-main">
+      <el-skeleton animated :rows="5" :loading="loading"/>
       <article-card class="article-item" v-for="article in articleList" :key="article.article_id" :data="article" @click="articleCardClick(article.article_id)"></article-card>
-      <empty-state v-if="!articleList.length"/>
+      <empty-state v-if="!loading && !articleList.length"/>
     </div>
     <div class="home-right">
       <author-card style="margin-bottom: 20px;"></author-card>
@@ -13,20 +14,20 @@
 </template>
 
 <script lang='ts' setup>
-import authorCard from './components/author-card.vue'
-import categoryCard from './components/category-card.vue'
 import tagCard from './components/tag-card.vue'
+import authorCard from './components/author-card.vue'
 import articleCard from './components/article-card.vue'
+import categoryCard from './components/category-card.vue'
 import emptyState from '@/components/empty-state.vue'
 import useArticle from '@/hook/article/useArticle'
-import useTag from '@/hook/article/useTag';
-import useCategory from '@/hook/article/useCategory';
+import useTag from '@/hook/article/useTag'
+import useCategory from '@/hook/article/useCategory'
 import useStatistics from '@/hook/article/useStatistics'
 import { STATISTICS_TYPE } from '@/constants'
 
 useTag()
 useCategory()
-const { articleList, articleCardClick } = useArticle()
+const { loading, articleList, articleCardClick } = useArticle()
 const { categoryData, tagData } = useStatistics([STATISTICS_TYPE.CATEGORY, STATISTICS_TYPE.TAG])
 
 </script>
