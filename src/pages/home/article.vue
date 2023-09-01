@@ -1,13 +1,16 @@
 <template>
   <div class="article-container" @scroll="handleScroll($event, setActiveMenu)">
-    <div class="article-main card">
-      <div class="article-title">{{article?.article_title}}</div>
-      <div class="article-info">
-        <span class="article-time">{{formatDate(article?.create_time, 'YYYY-MM-DD hh:mm:ss')}}</span>
-        <span class="iconfont icon-view mr-10"></span>
-        <span>{{ article?.article_view }}</span>
+    <div class="article-wrap">
+      <div class="article-main card">
+        <div class="article-title">{{article?.article_title}}</div>
+        <div class="article-info">
+          <span class="article-time">{{formatDate(article?.create_time, 'YYYY-MM-DD hh:mm:ss')}}</span>
+          <span class="iconfont icon-view mr-10"></span>
+          <span>{{ article?.article_view }}</span>
+        </div>
+        <div class="article-content markdown-body" v-html="addIndexToHtml(content)"></div>
       </div>
-      <div class="article-content markdown-body" v-html="addIndexToHtml(content)"></div>
+      <comment />
     </div>
     <div class="article-minor">
       <author-card></author-card>
@@ -15,17 +18,17 @@
         <a class="menu-item" v-for="(item, i) in menu" :key="i" :href="`#article-menu_${i + 1}`" :class="{active: i === activeMenuIndex}" :style="setMenuStyle(item)">{{ item.content }}</a>
       </div>
     </div>
-    
   </div>
 </template>
 
 <script lang='ts' setup>
-  import { watch } from 'vue';
-  import authorCard from './components/author-card.vue';
-  import useDate from '@/hook/common/useDate';
-  import useArticleDetail from '@/hook/article/useArticleDetail';
-  import useArticleMenu from '@/hook/article/useArticleMenu';
-  import useScrollAnchor from '@/hook/common/useScrollAnchor';
+  import { watch } from 'vue'
+  import comment from './components/comment.vue'
+  import authorCard from './components/author-card.vue'
+  import useDate from '@/hook/common/useDate'
+  import useArticleDetail from '@/hook/article/useArticleDetail'
+  import useArticleMenu from '@/hook/article/useArticleMenu'
+  import useScrollAnchor from '@/hook/common/useScrollAnchor'
 
   const { formatDate } = useDate()
   const { article, content } = useArticleDetail()
@@ -50,11 +53,15 @@
     padding: 20px 200px;
     box-sizing: border-box;
     overflow-y: scroll;
-    .article-main {
+    .article-wrap {
+      display: flex;
+      flex-direction: column;
       flex: 1;
       flex-shrink: 0;
-      padding: 30px;
-      box-sizing: border-box;
+      .article-main {
+        padding: 30px;
+        box-sizing: border-box;
+      }
       .article-title {
         font-weight: bold;
         letter-spacing: 2px;

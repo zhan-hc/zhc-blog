@@ -62,6 +62,9 @@ export interface ArticleType {
   article_view: number;
   category_id: number;
   article_cover: string;
+  tag_id_blog_tags?: Array<{
+    tag_id: number
+  }>
 }
 export interface ArticleMenu {
   level: number;

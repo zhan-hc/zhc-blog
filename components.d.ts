@@ -7,6 +7,8 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElPopover: typeof import('element-plus/es')['ElPopover']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
     EmptyState: typeof import('./src/components/empty-state.vue')['default']
     NavHeader: typeof import('./src/components/nav-header.vue')['default']

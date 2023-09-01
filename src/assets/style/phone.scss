@@ -54,8 +54,11 @@
     .article-minor {
       display: none;
     }
-    .article-main {
+    .article-wrap {
       width: calc(100vw - 46px);
+    }
+    .article-comment {
+      width: calc(100vw - 46px) !important;
     }
   }
 }

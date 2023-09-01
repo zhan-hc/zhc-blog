@@ -8,9 +8,9 @@
       <div class="article-category">
         <span>{{ categoryObj[props.data.category_id] }}</span>
       </div>
-      <div class="dividing" v-if="props.data.article_tag"></div>
-      <div class="article-tag" v-if="props.data.article_tag">
-        <span v-for="item in props.data.article_tag.split(',')" :key="item" style="margin-right: 10px;">{{ tagObj[item] }}</span>
+      <div class="dividing" v-if="props.data?.tag_id_blog_tags?.length"></div>
+      <div class="article-tag" v-if="props.data?.tag_id_blog_tags?.length">
+        <span v-for="item in props.data.tag_id_blog_tags" :key="item.tag_id" style="margin-right: 10px;">{{ tagObj[item.tag_id] }}</span>
       </div>
     </div>
     <div class="article-content">
