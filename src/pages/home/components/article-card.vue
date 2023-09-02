@@ -33,7 +33,7 @@
 
 <script lang='ts' setup>
 import { ArticleType } from '@/constants/types';
-import useDate from '@/hook/common/useDate';
+import { formatDate } from '@/utils/common';
 import { useArticleStore } from '@/store/article';
 import { storeToRefs } from 'pinia';
 
@@ -44,7 +44,6 @@ const props = defineProps({
   }
 })
 
-const { formatDate } = useDate()
 const store = useArticleStore()
 const { tagObj, categoryObj } = storeToRefs(store)
 

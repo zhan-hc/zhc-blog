@@ -93,3 +93,13 @@ export interface tagSticsType {
   tag_name: string;
   count: number;
 }
+
+export interface CommentType {
+  c_id?: number;
+  avatar?: string;
+  content: string;
+  nickname?: string;
+  article_id: number;
+  create_time?: Date;
+  isAuthor?: number;
+}

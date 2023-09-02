@@ -3,13 +3,21 @@
     <div class="content-wrap">
         <div class="left-content">
             <el-popover
-                :width="300"
+                :width="210"
                 >
                 <template #reference>
-                    <el-avatar :src="'@/assets/image/avatar/avatar1.png'" />
+                    <el-avatar :src="`${envApiHost}/static/avatar/avatar${curAvatarIndex}.png`" />
                 </template>
                 <template #default>
-                    <el-avatar v-for="item in 16" :key="item" src="@/assets/image/avatar/avatar1.png" />
+                    <div style="display: flex;flex-wrap: wrap;">
+                        <img 
+                            v-for="item in 16" :key="item" 
+                            :src="`${envApiHost}/static/avatar/avatar${item}.png`" 
+                            width="36" height="36" 
+                            style="margin: 0 10px 5px 0; cursor: pointer;"
+                            @click="curAvatarIndex = item"
+                        />
+                    </div>
                 </template>
             </el-popover>
         </div>
@@ -27,17 +35,17 @@
                 stroke-width="1"
                 />
             </svg>
-            <textarea rows="4" placeholder="评论内容"></textarea>
-            <div class="btn">提交</div>
+            <textarea v-model="content" rows="4" placeholder="评论内容"></textarea>
+            <div class="btn" @click="onSubmit">提交</div>
         </div>
     </div>
     <div class="comment-list">
-        <div class="comment-item" v-for="item in 2" :key="item" :class="{'right': item?.myself}">
-            <img class="item-avatar" src="@/assets/image/avatar/avatar1.png" alt="">
+        <div class="comment-item" v-for="item in props.commentList" :key="item.c_id" :class="{'right': item.isAuthor}">
+            <img class="item-avatar" :src="item.avatar" alt="">
             <div class="item-content">
                 <svg width="17" height="10" class="radius">
                     <path
-                    fill="#49b1f5" 
+                    :fill="item.isAuthor ? '#3CB371' : '#49b1f5'" 
                     d="
                         M 0 10 
                         A 10,10,0,0,0,8 7 
@@ -48,7 +56,7 @@
                     />
                 </svg>
                 <div class="text">
-                    写的很好，一步步引导思路
+                    {{ item.content }}
                 </div>
             </div>
         </div>
@@ -58,6 +66,26 @@
 </template>
 
 <script lang='ts' setup>
+import { CommentType } from '@/constants/types';
+import { envApiHost } from '@/utils/env';
+import { ref } from 'vue';
+
+const emit = defineEmits(['submit'])
+const props = defineProps({
+    commentList: {
+        type: Array<CommentType>,
+        default: () => []
+    }
+})
+const curAvatarIndex = ref(1)
+const content = ref('')
+
+const onSubmit = () => {
+    emit('submit', {
+        avatar: `${envApiHost}/static/avatar/avatar${curAvatarIndex.value}.png`,
+        content: content.value
+    })
+}
 </script>
 
 <style scoped lang='scss'>
@@ -105,6 +133,9 @@
             color: #fff;
             letter-spacing: 1px;
             border-radius: 4px;
+            &:hover {
+                cursor: pointer;
+            }
         }
         textarea {
             width: 100%;
@@ -115,7 +146,7 @@
             box-sizing: border-box;
             &:focus {
                 outline: none;
-                border: 1px solid $blog-font-4;
+                border: 2px solid $blog-font-4;
             }
         }
     }
@@ -147,7 +178,19 @@
                 }
             }
             &.right {
-                justify-content: flex-end;
+                flex-direction: row-reverse;
+                .item-content {
+                    margin-right: 20px;
+                    margin-left: 0;
+                }
+                .radius {
+                    left: unset;
+                    right: -18px;
+                    transform: translateY(-50%) rotate(90deg) scale(1.5, 2);
+                }
+                .text {
+                    background-color: #3CB371;
+                }
             }
         }
     }

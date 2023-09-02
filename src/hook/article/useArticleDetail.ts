@@ -12,15 +12,16 @@ export default function () {
   })
 
   const route = useRoute()
+  const articleId = route.params.id as string
 
   onMounted(async () => {
-    const [err, {article = {}, content = '' }]:any = await getArticleDetail(route.params.id as string)
-    console.log(err)
+    const [_err, {article = {}, content = '' }]:any = await getArticleDetail(articleId)
     state.article = article
     state.content = content
   })
 
   return {
-    ...toRefs(state)
+    ...toRefs(state),
+    articleId
   }
 }

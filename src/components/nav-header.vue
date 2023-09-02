@@ -1,6 +1,6 @@
 <template>
   <div class="nav-header">
-    <div class="header-left">
+    <div class="header-left" @click="router.push('/')">
       <img class="logo" src="@/assets/image/logo.png" alt=""/>
       <span class="author">前端笨鸟</span>
     </div>
@@ -28,6 +28,9 @@
 <script lang='ts' setup>
   import { Ref, ref } from "vue"
   import { onClickOutside } from '@vueuse/core'
+import { useRouter } from "vue-router"
+
+  const router = useRouter()
   const expandStatus = ref(false)
   const header:Ref<HTMLElement|null> = ref(null)
   const toggleExpand = () => {
@@ -56,6 +59,9 @@
       display: flex;
       align-items: center;
       flex-shrink: 0;
+      &:hover {
+        cursor: pointer;
+      }
       .author {
         font-size: 20px;
         font-weight: bold;

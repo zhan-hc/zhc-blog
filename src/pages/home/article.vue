@@ -10,7 +10,7 @@
         </div>
         <div class="article-content markdown-body" v-html="addIndexToHtml(content)"></div>
       </div>
-      <comment />
+      <comment @submit="submitComment" :commentList="commentList"/>
     </div>
     <div class="article-minor">
       <author-card></author-card>
@@ -25,15 +25,32 @@
   import { watch } from 'vue'
   import comment from './components/comment.vue'
   import authorCard from './components/author-card.vue'
-  import useDate from '@/hook/common/useDate'
+  import useComment from '@/hook/article/useComment'
   import useArticleDetail from '@/hook/article/useArticleDetail'
   import useArticleMenu from '@/hook/article/useArticleMenu'
   import useScrollAnchor from '@/hook/common/useScrollAnchor'
+  import { formatDate } from '@/utils/common'
+  import { addComment } from '@/api/comment'
+  import useCollect from '@/hook/common/useCollect'
 
-  const { formatDate } = useDate()
-  const { article, content } = useArticleDetail()
+  const { getUserId } = useCollect()
+  const { article, content, articleId } = useArticleDetail()
   const { menu, activeMenuIndex, setMenuStyle, getArticleMenu, setActiveMenu, addIndexToHtml } = useArticleMenu()
   const { handleScroll } = useScrollAnchor('h', 'article-menu_')
+  const { commentList, fetchCommentList } = useComment(Number(articleId))
+
+  const submitComment = async ({ avatar, content }: any) => {
+    const nickname = await getUserId()
+    await addComment({
+      avatar,
+      content,
+      nickname,
+      article_id: articleId,
+      create_time: +new Date(),
+      isAuthor: 0
+    })
+    await fetchCommentList()
+  }
 
   watch(content, (newValue) => {
     if (newValue) {
