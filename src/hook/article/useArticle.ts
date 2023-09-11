@@ -25,7 +25,8 @@ export default function () {
 
   const articleCardClick = (id: number) => {
     addViewCount(id)
-    routerGo(`/article/${id}`)
+    location.href = `/post/${id}`
+    // routerGo(`/article/${id}`)
   }
 
   return {

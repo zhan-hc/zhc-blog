@@ -1,7 +1,7 @@
 <template>
   <div class="nav-header">
     <div class="header-left" @click="router.push('/')">
-      <img class="logo" src="@/assets/image/logo.png" alt=""/>
+      <img class="logo" src="../../public/logo.svg" alt=""/>
       <span class="author">前端笨鸟</span>
     </div>
     <div class="header-tags">
