@@ -1,14 +1,14 @@
 <template>
   <div class="menu-bar card">
-    <div class="menu-item" v-for="(tab, i) in tabs" :key="i" @click="tabClick(i)">
-      <a class="ellipsis" :href="`#nav-bar_${i + 1}`">{{tab.jump_tag}}</a>
+    <div class="menu-item" :class="{active: activtTab === i}" v-for="(tab, i) in tabs" :key="i" @click="tabClick(i)">
+      <a class="ellipsis menu-text" :href="`#nav-bar_${i + 1}`">{{tab.jump_tag}}</a>
     </div>
     <div v-if="tabs.length" class="menu__active-bar" :style="barStyle"></div>
   </div>
 </template>
 
 <script lang='ts' setup>
-  import { ref, watch, nextTick } from 'vue';
+  import { ref, watch, nextTick, computed } from 'vue';
   import type { CSSProperties } from 'vue'
   import { JumpType } from '@/constants/types';
   const props = defineProps({
@@ -19,11 +19,10 @@
   })
 
   const barStyle = ref<CSSProperties>()
-
+  const activtTab = computed(() => props.tabs.findIndex((tab:any) => tab.active))
   const getBarStyle = () => {
-    const activeIndex = props.tabs.findIndex((tab:any) => tab.active)
     return {
-      transform: `translateY(${(activeIndex) * 40 + 8}px)`
+      transform: `translateY(${(activtTab.value) * 40 + 8}px)`
     }
   }
   const update = () => (barStyle.value = getBarStyle())
@@ -61,8 +60,33 @@
     height: 40px;
     padding: 0 20px;
     box-sizing: border-box;
+    .menu-text {
+      padding-bottom: 5px;
+    }
+    &.active {
+      color: $primary-color;
+      font-weight: bold;
+    }
     &:hover {
       cursor: pointer;
+      color: $primary-color-sub;
+      font-weight: bold;
+      .menu-text {
+        position: relative;
+        &::after {
+          content: '';
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          right: 0;
+          width: 100%;
+          height: 1px;
+          background-color: $primary-color-sub;
+          border-radius: 2px;
+          animation: toRight .3s linear;
+        }
+      }
+      
     }
   }
   .menu__active-bar {
@@ -74,6 +98,14 @@
       border-radius: 4px;
       background-color: $primary-color;
       transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
+  }
+}
+@keyframes toRight {
+  0% {
+    width: 0;
+  }
+  100% {
+    width: 100%;
   }
 }
 </style>

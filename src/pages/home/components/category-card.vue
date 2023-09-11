@@ -31,7 +31,7 @@ const props = defineProps({
     .card-title {
       font-weight: 500;
       letter-spacing: 1px;
-      color: $blog-font-1;
+      color: $primary-color;
       .icon-category {
         font-size: 18px;
         margin-right: 10px;

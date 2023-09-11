@@ -69,7 +69,7 @@ import { LinksType } from '@/constants/types'
         font-size: 20px;
         font-weight: bold;
         letter-spacing: 1px;
-        border-bottom: 2px solid $primary-color;
+        border-bottom: 2px solid #d3d3d3;
         span {
           &:first-child {
             margin-right: 20px;

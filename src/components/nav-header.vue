@@ -65,7 +65,7 @@ import { useRouter } from "vue-router"
       .author {
         font-size: 20px;
         font-weight: bold;
-        color: $primary-color-sub;
+        color: $primary-color;
         letter-spacing: 3px;
       }
       .logo {
@@ -82,11 +82,11 @@ import { useRouter } from "vue-router"
         margin-right: 20px;
         text-decoration: none;
         &.router-link-exact-active {
-          color: rgba(0, 0, 0, 0.9);
+          color: $primary-color;
         }
         &:hover {
           cursor: pointer;
-          color: rgba(0, 0, 0, 0.7);
+          color: $primary-color-sub;
         }
         &:last-of-type {
           margin-right: 0;
@@ -121,14 +121,14 @@ import { useRouter } from "vue-router"
       font-weight: bold;
       color: rgba(0, 0, 0, 0.5);
       &.router-link-exact-active {
-        color: rgba(0, 0, 0, 0.9);
+        color: $primary-color-sub;
         .iconfont {
           color: rgba(0, 0, 0, 0.9);
         }
       }
       &:hover {
         cursor: pointer;
-        color: rgba(0, 0, 0, 0.7);
+        color: $primary-color-active;
       }
     }
   }
