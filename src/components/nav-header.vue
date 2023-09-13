@@ -52,8 +52,9 @@ import { useRouter } from "vue-router"
     justify-content: space-between;
     height: 64px;
     padding: 8px 32px;
-    background-color: #fff;
+    background-color: $theme-color;
     border-bottom: 1px solid #f1f1f1;
+    box-shadow: $box-shadow;
     box-sizing: border-box;
     .header-left {
       display: flex;
@@ -108,7 +109,7 @@ import { useRouter } from "vue-router"
     top: 56px;
     width: 100%;
     padding: 5px 10px;
-    background-color: #fff;
+    background-color: $theme-color;
     border: 1px solid #f1f1f1;
     box-sizing: border-box;
     .iconfont {

@@ -108,7 +108,7 @@ import { LinksType } from '@/constants/types'
             font-size: 14px;
             border: 1px solid #ccc;
             border-radius: 5px;
-            background-color: #fff;
+            background-color: $theme-color;
             white-space: nowrap;
           }
         }

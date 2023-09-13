@@ -49,7 +49,7 @@
 .menu-bar {
   position: relative;
   max-height: 500px;
-  background: #ffffff;
+  background: $theme-color;
   border-radius: 6px;
   overflow-y: scroll;
   .menu-item {
@@ -80,10 +80,10 @@
           left: 0;
           right: 0;
           width: 100%;
-          height: 1px;
+          height: 2px;
           background-color: $primary-color-sub;
           border-radius: 2px;
-          animation: toRight .3s linear;
+          animation: lineRight .3s linear;
         }
       }
       
@@ -100,7 +100,7 @@
       transition: transform 0.3s cubic-bezier(0.645, 0.045, 0.355, 1);
   }
 }
-@keyframes toRight {
+@keyframes lineRight {
   0% {
     width: 0;
   }

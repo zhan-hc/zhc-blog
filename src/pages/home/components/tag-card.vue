@@ -23,19 +23,16 @@ const props = defineProps({
 <style scoped lang='scss'>
   .tag-card {
     width: 200px;
-    padding: 20px;
+    padding: 20px 20px 10px;
     box-sizing: border-box;
     .card-title {
       font-weight: 500;
       letter-spacing: 1px;
-      color: $primary-color;
+      color: $blog-font-1;
       .icon-tag {
         font-size: 18px;
         margin-right: 10px;
       }
-    }
-    .iconfont {
-      color: $primary-color;
     }
     .card-content {
       display: flex;
@@ -47,7 +44,6 @@ const props = defineProps({
         margin-right: 10px;
         margin-bottom: 10px;
         padding: 3px 6px;
-        border: 2px solid $blog-color-gray-1;
         border-radius: 4px;
       }
     }
