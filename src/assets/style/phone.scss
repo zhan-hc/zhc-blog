@@ -1,4 +1,4 @@
-@media screen and (max-width: 900px) {
+@media screen and (max-width: 767px) {
   /* 顶部导航栏*/
   .nav-header {
     height: 56px !important;
@@ -59,6 +59,16 @@
     }
     .article-comment {
       width: calc(100vw - 46px) !important;
+    }
+  }
+}
+@media screen and (max-width: 959px) {
+  .article-container {
+    .author-card {
+      display: none !important;
+    }
+    .article-minor {
+      display: none;
     }
   }
 }

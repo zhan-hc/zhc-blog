@@ -75,6 +75,8 @@
       flex-direction: column;
       flex: 1;
       flex-shrink: 0;
+      max-width: 850px;
+      transition: width 0.5s;
       .article-main {
         padding: 30px;
         box-sizing: border-box;
