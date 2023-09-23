@@ -23,7 +23,7 @@
           <i class="iconfont icon-view"></i>
           <span class="indicator">{{ props.data.article_view }}</span>
           <i class="iconfont icon-comment"></i>
-          <span class="indicator">1</span>
+          <span class="indicator">{{ props.data.comments }}</span>
         </div>
       </div>
       <img v-imgErr class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="文章背景">

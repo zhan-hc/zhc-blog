@@ -2,7 +2,7 @@
   <div class="home-container">
     <div class="home-main">
       <el-skeleton animated :rows="5" :loading="loading"/>
-      <article-card class="article-item" v-for="article in articleList" :key="article.article_id" :data="article" @click="articleCardClick(article.article_id)"></article-card>
+      <article-card class="article-item" v-for="article in articleList" :key="article.article_id" :data="article" @click="articleCardClick(article)"></article-card>
       <empty-state v-if="!loading && !articleList.length"/>
     </div>
     <div class="home-right">

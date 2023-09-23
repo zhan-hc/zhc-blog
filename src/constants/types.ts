@@ -62,6 +62,7 @@ export interface ArticleType {
   article_view: number;
   category_id: number;
   article_cover: string;
+  comments?: number;
   tag_id_blog_tags?: Array<{
     tag_id: number
   }>

@@ -23,9 +23,10 @@ export default function () {
     await addArticleView(id)
   }
 
-  const articleCardClick = (id: number) => {
-    addViewCount(id)
-    location.href = `/post/${id}`
+  const articleCardClick = (article: ArticleType) => {
+    article.article_view += 1
+    addViewCount(article.article_id)
+    location.href = `/post/${article.article_id}`
     // routerGo(`/article/${id}`)
   }
 
