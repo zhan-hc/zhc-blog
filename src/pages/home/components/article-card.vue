@@ -98,6 +98,7 @@ const { tagObj, categoryObj } = storeToRefs(store)
         margin-left: 8px;
         border-radius: 2px;
         object-fit: cover;
+        flex-shrink: 0;
       }
     }
   }
