@@ -19,7 +19,7 @@
         <div class="article-desc ellipsis-2">{{ props.data.article_desc || props.data.article_content.replace(/(?:\*\*|__)(.*?)(?:\*\*|__)|\[(.*?)\]\(.*?\)|[#`*_+-]/g, '$1$2') }}</div>
         <div class="article-indicator">
           <i class="iconfont icon-upvote"></i>
-          <span class="indicator">{{ props.data.article_like }}</span>
+          <span class="indicator">{{ props.data.likesNum }}</span>
           <i class="iconfont icon-view"></i>
           <span class="indicator">{{ props.data.article_view }}</span>
           <i class="iconfont icon-comment"></i>
