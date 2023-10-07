@@ -68,6 +68,7 @@ const { tagObj, categoryObj } = storeToRefs(store)
       margin-top: 12px;
       .article-info {
         flex-grow: 1;
+        overflow: hidden;
         .article-title {
           color: $blog-font-1;
           font-size: 16px;
