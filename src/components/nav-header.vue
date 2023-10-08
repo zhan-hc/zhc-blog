@@ -105,12 +105,13 @@ import { useRouter } from "vue-router"
   }
   .header-expand {
     z-index: 2;
-    position: absolute;
+    position: fixed;
     top: 56px;
     width: 100%;
     padding: 5px 10px;
     background-color: $theme-color;
     border: 1px solid #f1f1f1;
+    box-shadow: $box-shadow;
     box-sizing: border-box;
     .iconfont {
       margin-right: 5px;

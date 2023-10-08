@@ -48,8 +48,7 @@ import { LinksType } from '@/constants/types'
   margin: 0 auto;
   box-sizing: border-box;
   .tab-menu {
-    margin-top: 20px;
-    margin-right: 20px;
+    margin: 20px 20px 0 20px;
     flex-shrink: 0;
   }
   .tab-content {
