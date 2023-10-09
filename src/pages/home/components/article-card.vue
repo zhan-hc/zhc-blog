@@ -26,8 +26,8 @@
           <span class="indicator">{{ props.data.comments }}</span>
         </div>
       </div>
-      <div class="cover-wrap">
-        <img v-imgErr class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="文章头图">
+      <div class="cover-wrap" v-if="props.data.article_cover">
+        <img v-imgErr class="article-cover" :src="props.data.article_cover" alt="文章头图">
       </div>
       
     </div>

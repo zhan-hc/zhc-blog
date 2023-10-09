@@ -1,107 +1,86 @@
 {
-  "id": "2726348",
-  "name": "blog",
+  "id": "4172182",
+  "name": "zhc-blog",
   "font_family": "iconfont",
   "css_prefix_text": "icon-",
   "description": "",
   "glyphs": [
     {
-      "icon_id": "11903687",
-      "name": "date",
-      "font_class": "date",
-      "unicode": "e657",
-      "unicode_decimal": 58967
+      "icon_id": "212330",
+      "name": "tag_fill",
+      "font_class": "tag",
+      "unicode": "e751",
+      "unicode_decimal": 59217
     },
     {
-      "icon_id": "16547627",
-      "name": "search",
-      "font_class": "chakan",
-      "unicode": "e605",
-      "unicode_decimal": 58885
-    },
-    {
-      "icon_id": "17202139",
-      "name": "detail",
-      "font_class": "detail2",
-      "unicode": "e647",
-      "unicode_decimal": 58951
-    },
-    {
-      "icon_id": "13363815",
-      "name": "search",
-      "font_class": "search-copy",
-      "unicode": "e604",
-      "unicode_decimal": 58884
-    },
-    {
-      "icon_id": "19165727",
-      "name": "category",
+      "icon_id": "12347505",
+      "name": "category_24px_rounded",
       "font_class": "category",
-      "unicode": "e6b0",
-      "unicode_decimal": 59056
+      "unicode": "ed97",
+      "unicode_decimal": 60823
     },
     {
-      "icon_id": "12942306",
-      "name": "recent",
-      "font_class": "noun_recent_",
-      "unicode": "e603",
-      "unicode_decimal": 58883
-    },
-    {
-      "icon_id": "15548833",
-      "name": "Logo GitHub",
-      "font_class": "huaban88",
-      "unicode": "e602",
-      "unicode_decimal": 58882
-    },
-    {
-      "icon_id": "17677873",
-      "name": "评论",
-      "font_class": "pinglun1",
-      "unicode": "e60c",
-      "unicode_decimal": 58892
-    },
-    {
-      "icon_id": "18130758",
+      "icon_id": "2742629",
       "name": "点赞",
-      "font_class": "dianzan_active",
-      "unicode": "e601",
-      "unicode_decimal": 58881
+      "font_class": "upvote",
+      "unicode": "e668",
+      "unicode_decimal": 58984
     },
     {
-      "icon_id": "20157479",
-      "name": "eye",
-      "font_class": "eye1",
-      "unicode": "e610",
-      "unicode_decimal": 58896
+      "icon_id": "4936668",
+      "name": "eye-fill",
+      "font_class": "view",
+      "unicode": "e869",
+      "unicode_decimal": 59497
     },
     {
-      "icon_id": "21718414",
-      "name": "日 历",
-      "font_class": "rili",
-      "unicode": "e736",
-      "unicode_decimal": 59190
+      "icon_id": "5950864",
+      "name": "评论-面",
+      "font_class": "comment",
+      "unicode": "e634",
+      "unicode_decimal": 58932
     },
     {
-      "icon_id": "12099823",
-      "name": "图库",
-      "font_class": "tuku",
-      "unicode": "e6e0",
-      "unicode_decimal": 59104
+      "icon_id": "26267597",
+      "name": "juejin",
+      "font_class": "juejin",
+      "unicode": "e60b",
+      "unicode_decimal": 58891
     },
     {
-      "icon_id": "579575",
-      "name": "tag",
-      "font_class": "tag1",
-      "unicode": "e655",
-      "unicode_decimal": 58965
+      "icon_id": "33519",
+      "name": "home_fill",
+      "font_class": "home",
+      "unicode": "e6bb",
+      "unicode_decimal": 59067
     },
     {
-      "icon_id": "20531992",
-      "name": "home",
-      "font_class": "xuanzhongshangcheng-copy",
-      "unicode": "e600",
-      "unicode_decimal": 58880
+      "icon_id": "20113338",
+      "name": "bxs-category",
+      "font_class": "menu",
+      "unicode": "e6a2",
+      "unicode_decimal": 59042
+    },
+    {
+      "icon_id": "459019",
+      "name": "wechat",
+      "font_class": "wechat",
+      "unicode": "e635",
+      "unicode_decimal": 58933
+    },
+    {
+      "icon_id": "7141689",
+      "name": "github",
+      "font_class": "github",
+      "unicode": "e632",
+      "unicode_decimal": 58930
+    },
+    {
+      "icon_id": "11556695",
+      "name": "菜单展开",
+      "font_class": "expand",
+      "unicode": "e615",
+      "unicode_decimal": 58901
     }
   ]
 }

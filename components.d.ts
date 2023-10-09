@@ -10,6 +10,7 @@ declare module 'vue' {
     AuthorCard: typeof import('./src/components/author-card.vue')['default']
     CategoryCard: typeof import('./src/components/category-card.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
+    ElDrawer: typeof import('element-plus/es')['ElDrawer']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
     EmptyState: typeof import('./src/components/empty-state.vue')['default']

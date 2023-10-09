@@ -16,9 +16,6 @@
   .nav-fill {
     height: 56px !important;
   }
-  .header-expand {
-    display: block;
-  }
   /*首页*/
   .home-container {
     .home-main {
@@ -26,9 +23,6 @@
       margin: 0 20px !important;
       .article-item {
         box-sizing: border-box;
-        .article-cover {
-          display: none;
-        }
       }
     }
     .home-right {
@@ -46,6 +40,9 @@
   /*author*/
   .author-card {
     display: none !important;
+    &.show {
+      display: flex !important;
+    }
   }
 
   /*article*/ 

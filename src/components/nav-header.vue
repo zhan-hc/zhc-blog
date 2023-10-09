@@ -11,32 +11,29 @@
     </div>
   </div>
   <div class="nav-fill"></div>
-  <Transition name="slide-fade">
-    <div class="header-expand" v-show="expandStatus" ref="header">
-      <router-link to="/" class="tag" @click.stop="toggleExpand">
+  <el-drawer v-model="expandStatus" :with-header="false" size="70%">
+    <author-card class="author-wrap show"/>
+    <div class="nav-list">
+      <router-link to="/" class="tag"  @click.stop="expandStatus = false">
         <i class="iconfont icon-home"></i>
         <span>Home</span>
       </router-link>
-      <router-link to="/nav" class="tag" @click.stop="toggleExpand">
+      <router-link to="/nav" class="tag"  @click.stop="expandStatus = false">
         <i class="iconfont icon-menu"></i>
         <span>Nav</span>
       </router-link>
     </div>
-  </Transition>
+  </el-drawer>
 </template>
 
 <script lang='ts' setup>
   import { Ref, ref } from "vue"
   import { onClickOutside } from '@vueuse/core'
-import { useRouter } from "vue-router"
+  import { useRouter } from "vue-router"
+  import authorCard from '@/components/author-card.vue'
 
   const router = useRouter()
   const expandStatus = ref(false)
-  const header:Ref<HTMLElement|null> = ref(null)
-  const toggleExpand = () => {
-    expandStatus.value = !expandStatus.value
-  }
-  onClickOutside(header, () => { expandStatus.value = false })
 
 </script>
 
@@ -103,29 +100,28 @@ import { useRouter } from "vue-router"
       }
     }
   }
-  .header-expand {
-    z-index: 2;
-    position: fixed;
-    top: 56px;
-    width: 100%;
-    padding: 5px 10px;
-    background-color: $theme-color;
-    border: 1px solid #f1f1f1;
-    box-shadow: $box-shadow;
-    box-sizing: border-box;
-    .iconfont {
-      margin-right: 5px;
-      color: rgba(0, 0, 0, 0.5);
+  .author-wrap {
+    margin: auto;
+    box-shadow: none;
+    &:hover {
+      box-shadow: none;
     }
+  }
+  .nav-list {
+    display: flex;
+    flex-direction: column;
     .tag {
-      display: block;
       padding: 10px 10px;
       font-weight: bold;
       color: rgba(0, 0, 0, 0.5);
+      .iconfont {
+        margin-right: 10px;
+        color: rgba(0, 0, 0, 0.5);
+      }
       &.router-link-exact-active {
         color: $primary-color-sub;
         .iconfont {
-          color: rgba(0, 0, 0, 0.9);
+          color: $primary-color-active;
         }
       }
       &:hover {
