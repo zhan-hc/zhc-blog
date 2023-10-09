@@ -24,7 +24,7 @@
 <script lang='ts' setup>
   import { watch } from 'vue'
   import comment from './components/comment.vue'
-  import authorCard from './components/author-card.vue'
+  import authorCard from '../../components/author-card.vue'
   import useComment from '@/hook/article/useComment'
   import useArticleDetail from '@/hook/article/useArticleDetail'
   import useArticleMenu from '@/hook/article/useArticleMenu'

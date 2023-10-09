@@ -26,7 +26,10 @@
           <span class="indicator">{{ props.data.comments }}</span>
         </div>
       </div>
-      <img v-imgErr class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="文章头图">
+      <div class="cover-wrap">
+        <img v-imgErr class="article-cover" v-if="props.data.article_cover" :src="props.data.article_cover" alt="文章头图">
+      </div>
+      
     </div>
   </div>
 </template>
@@ -54,6 +57,9 @@ const { tagObj, categoryObj } = storeToRefs(store)
     padding: 15px;
     &:hover {
       cursor: pointer;
+      .article-cover {
+        transform: scale(1.1);
+      }
     }
     .article-header {
       display: flex;
@@ -93,13 +99,21 @@ const { tagObj, categoryObj } = storeToRefs(store)
           }
         }
       }
-      .article-cover {
+      .cover-wrap {
         width: 120px;
         height: 80px;
         margin-left: 8px;
-        border-radius: 2px;
-        object-fit: cover;
+        border-radius: $blog-cover-radius;
         flex-shrink: 0;
+        overflow: hidden;
+        box-sizing: border-box;
+        .article-cover {
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          border-radius: 2px;
+          transition: all 0.6s;
+        }
       }
     }
   }

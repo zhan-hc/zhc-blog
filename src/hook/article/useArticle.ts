@@ -2,7 +2,7 @@ import { onMounted, reactive, toRefs } from "vue";
 import { ArticleType } from "@/constants/types";
 import useRouter from '@/hook/common/useRouter'
 import { addArticleView, getArticleList } from '@/api/atricle';
-export default function () {
+export default function (init = true) {
   const { routerGo } = useRouter()
   const state: {
     articleList: ArticleType[]
@@ -13,11 +13,15 @@ export default function () {
   })
 
   onMounted(async () => {
+    init && await getArticleData()
+  })
+
+  const getArticleData = async (params = {}) => {
     state.loading = true
-    const [err, { articleList = [] }]:any = await getArticleList()
+    const [err, { articleList = [] }]:any = await getArticleList(params)
     state.articleList = articleList
     state.loading = false
-  })
+  }
 
   const addViewCount = async (id: number) => {
     await addArticleView(id)
@@ -32,6 +36,7 @@ export default function () {
 
   return {
     ...toRefs(state),
+    getArticleData,
     articleCardClick
   }
 }

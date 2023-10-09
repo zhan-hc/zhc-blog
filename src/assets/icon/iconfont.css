@@ -1,8 +1,8 @@
 @font-face {
-  font-family: "iconfont"; /* Project id 4172182 */
-  src: url('iconfont.woff2?t=1691047802140') format('woff2'),
-       url('iconfont.woff?t=1691047802140') format('woff'),
-       url('iconfont.ttf?t=1691047802140') format('truetype');
+  font-family: "iconfont"; /* Project id 2726348 */
+  src: url('iconfont.woff2?t=1696830955845') format('woff2'),
+       url('iconfont.woff?t=1696830955845') format('woff'),
+       url('iconfont.ttf?t=1696830955845') format('truetype');
 }
 
 .iconfont {
@@ -13,47 +13,59 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-tag:before {
-  content: "\e751";
+.icon-date:before {
+  content: "\e657";
+}
+
+.icon-chakan:before {
+  content: "\e605";
+}
+
+.icon-detail2:before {
+  content: "\e647";
+}
+
+.icon-search-copy:before {
+  content: "\e604";
 }
 
 .icon-category:before {
-  content: "\ed97";
+  content: "\e6b0";
 }
 
-.icon-upvote:before {
-  content: "\e668";
+.icon-noun_recent_:before {
+  content: "\e603";
 }
 
-.icon-view:before {
-  content: "\e869";
+.icon-huaban88:before {
+  content: "\e602";
 }
 
-.icon-comment:before {
-  content: "\e634";
+.icon-pinglun1:before {
+  content: "\e60c";
 }
 
-.icon-juejin:before {
-  content: "\e60b";
+.icon-dianzan_active:before {
+  content: "\e601";
 }
 
-.icon-home:before {
-  content: "\e6bb";
+.icon-eye1:before {
+  content: "\e610";
 }
 
-.icon-menu:before {
-  content: "\e6a2";
+.icon-rili:before {
+  content: "\e736";
 }
 
-.icon-wechat:before {
-  content: "\e635";
+.icon-tuku:before {
+  content: "\e6e0";
 }
 
-.icon-github:before {
-  content: "\e632";
+.icon-tag1:before {
+  content: "\e655";
 }
 
-.icon-expand:before {
-  content: "\e615";
+.icon-xuanzhongshangcheng-copy:before {
+  content: "\e600";
 }
 

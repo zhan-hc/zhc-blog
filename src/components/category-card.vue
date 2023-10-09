@@ -5,7 +5,7 @@
       <span>Categories</span>
     </div>
     <div class="card-content">
-      <div class="card-item active-hover" v-for="item in props.data" :key="item.category_id">
+      <div class="card-item active-hover" v-for="item in props.data" :key="item.category_id" @click="toCategory(item.category_id)">
         <span>{{ item.category_name }}</span>
         <span>{{ item.count }}</span>
       </div>
@@ -15,12 +15,19 @@
 
 <script lang='ts' setup>
 import { categorySticsType } from '@/constants/types'
+import { useRouter } from 'vue-router'
 const props = defineProps({
   data: {
     type: Array<categorySticsType>,
     default: () => []
   }
 })
+
+const router = useRouter()
+
+const toCategory = (id: number) => {
+  router.push(`category/${id}`)
+}
 </script>
 
 <style scoped lang='scss'>
@@ -41,6 +48,7 @@ const props = defineProps({
       padding-top: 15px;
       color: $blog-color-gray-1;
       .card-item {
+        font-weight: 500;
         display: flex;
         justify-content: space-between;
       }

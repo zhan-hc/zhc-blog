@@ -3,10 +3,11 @@ import MyRequest from '@/services/index'
  * 调用demo
  * cosnt [err, res] = await getUser()
 */
-export const getArticleList = () => {
+export const getArticleList = (data = {}) => {
   return MyRequest.request({
     url: '/article/getArticleList',
-    method: 'GET'
+    method: 'GET',
+    data
   })
 }
 export const getArticleDetail = (id: string) => {

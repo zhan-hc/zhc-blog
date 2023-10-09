@@ -7,13 +7,19 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    AuthorCard: typeof import('./src/components/author-card.vue')['default']
+    CategoryCard: typeof import('./src/components/category-card.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
     EmptyState: typeof import('./src/components/empty-state.vue')['default']
+    MainFrame: typeof import('./src/components/main-frame.vue')['default']
+    MenuBar: typeof import('./src/components/menu-bar.vue')['default']
     NavHeader: typeof import('./src/components/nav-header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SvgIcon: typeof import('./src/components/svg-icon.vue')['default']
+    TagCard: typeof import('./src/components/tag-card.vue')['default']
+    TimeLineCard: typeof import('./src/components/time-line-card.vue')['default']
   }
 }

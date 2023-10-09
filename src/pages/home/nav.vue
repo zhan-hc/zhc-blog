@@ -20,7 +20,7 @@
 </template>
 
 <script lang='ts' setup>
-  import MenuBar from './components/menu-bar.vue'
+  import MenuBar from '../../components/menu-bar.vue'
   import useScrollAnchor from '@/hook/common/useScrollAnchor'
   import useLink from '@/hook/nav/useLink'
   import useJump from '@/hook/nav/useJump'
