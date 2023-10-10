@@ -26,7 +26,7 @@ const props = defineProps({
 const router = useRouter()
 
 const toCategory = (id: number) => {
-  router.push(`category/${id}`)
+  router.push(`/category/${id}`)
 }
 </script>
 

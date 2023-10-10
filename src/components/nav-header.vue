@@ -30,7 +30,7 @@
   import { Ref, ref } from "vue"
   import { onClickOutside } from '@vueuse/core'
   import { useRouter } from "vue-router"
-  import authorCard from '@/components/author-card.vue'
+  import authorCard from '@/components/card/author-card.vue'
 
   const router = useRouter()
   const expandStatus = ref(false)

@@ -2,7 +2,7 @@ import { onMounted, reactive, toRefs } from 'vue'
 import { CategoryType } from '@/constants/types';
 import { getCategoryList } from '@/api/category';
 import { useArticleStore } from '@/store/article';
-export default function () {
+export default function (init = true) {
 
   const store = useArticleStore()
 
@@ -20,13 +20,18 @@ export default function () {
     store.setCategoryObj(catergoryObj)
   }
 
-  onMounted(async () => {
-    const [err, { categoryList = [] }]:any = await getCategoryList()
+  const getCategoryData = async () => {
+    const [_err, { categoryList = [] }]:any = await getCategoryList()
     state.categoryList = categoryList
     getCategoryObj()
+  }
+
+  onMounted(async () => {
+    init && await getCategoryData()
   })
 
   return {
-    ...toRefs(state)
+    ...toRefs(state),
+    getCategoryData
   }
 }

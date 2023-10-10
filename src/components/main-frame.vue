@@ -17,9 +17,9 @@
 
 <script lang='ts' setup>
   import { onMounted } from 'vue'
-  import tagCard from '@/components/tag-card.vue'
-  import authorCard from '@/components/author-card.vue'
-  import categoryCard from '@/components/category-card.vue'
+  import tagCard from '@/components/card/tag-card.vue'
+  import authorCard from '@/components/card/author-card.vue'
+  import categoryCard from '@/components/card/category-card.vue'
   import useTag from '@/hook/article/useTag'
   import useCategory from '@/hook/article/useCategory'
   import useStatistics from '@/hook/article/useStatistics'

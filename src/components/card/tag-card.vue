@@ -5,19 +5,27 @@
       <span>Tags</span>
     </div>
     <div class="card-content">
-      <div class="card-item active-hover" v-for="item in props.data" :key="item.tag_id">{{ item.tag_name }}</div>
+      <div class="card-item active-hover" v-for="item in props.data" :key="item.tag_id" @click="toTag(item.tag_id)">{{ item.tag_name }}</div>
     </div>
   </div>
 </template>
 
 <script lang='ts' setup>
 import { tagSticsType } from '@/constants/types'
+import { useRouter } from 'vue-router'
+
 const props = defineProps({
   data: {
     type: Array<tagSticsType>,
     default: () => []
   }
 })
+
+const router = useRouter()
+
+const toTag = (id: number) => {
+  router.push(`/tag/${id}`)
+}
 </script>
 
 <style scoped lang='scss'>

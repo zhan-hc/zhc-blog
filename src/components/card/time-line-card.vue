@@ -1,6 +1,6 @@
 <template>
   <div class="time-line card">
-    <div class="article-item category">{{`Category - ${categoryName}`}}</div>
+    <div class="article-item category">{{name}}</div>
     <div class="article-box" v-for="(item, i) in list" :key="item.id">
       <div class="article-item year" v-if="i === 0 || (i > 0 && !diffDateYear(list[i].create_time, list[i - 1].create_time))">{{ formatDate(item.create_time, 'YYYY') }}</div>
       <div class="article-item" @click="articleCardClick(item)">
@@ -31,13 +31,13 @@ const props = defineProps({
     type: Array<ArticleType>,
     default: () => []
   },
-  categoryName: {
+  name: {
     type: String,
     default: '分类'
   }
 })
 
-const { list, categoryName } = toRefs(props)
+const { list, name } = toRefs(props)
 const { articleCardClick } = useArticle()
 const diffDateYear = (startDate: Date, endDate: Date) => {
   return formatDate(startDate, 'YYYY') === formatDate(endDate, 'YYYY')
@@ -70,6 +70,7 @@ const diffDateYear = (startDate: Date, endDate: Date) => {
         }
       }
       .article-cover {
+        flex-shrink: 0;
         width: 80px;
         height: 80px;
         margin-right: 20px;
@@ -95,7 +96,7 @@ const diffDateYear = (startDate: Date, endDate: Date) => {
         font-size: 20px;
         padding-top: 20px;
         &::before {
-          left: -10px;
+          left: -11px;
           width: 8px;
           height: 8px;
           border: 6px solid $blog-font-3;

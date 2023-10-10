@@ -2,7 +2,7 @@ import { onMounted, reactive, toRefs } from 'vue'
 import { TagType } from '@/constants/types';
 import { getTagList } from '@/api/tag';
 import { useArticleStore } from '@/store/article';
-export default function () {
+export default function (init = true) {
 
   const store = useArticleStore()
 
@@ -20,13 +20,17 @@ export default function () {
     store.setTagObj(tagObj)
   }
 
-  onMounted(async () => {
-    const [err, { tagList = [] }]:any = await getTagList()
+  const getTagData = async () => {
+    const [_err, { tagList = [] }]:any = await getTagList()
     state.tagList = tagList
     getTagObj()
+  }
+  onMounted(async () => {
+    init && await getTagData()
   })
 
   return {
-    ...toRefs(state)
+    ...toRefs(state),
+    getTagData
   }
 }

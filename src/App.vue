@@ -1,11 +1,13 @@
 <template>
   <div class="app-container">
     <nav-header></nav-header>
-    <router-view></router-view>
+    <router-view :key="route.path"></router-view>
   </div>
 </template>
 <script setup lang="ts">
 import NavHeader from '@/components/nav-header.vue'
+import { useRoute } from 'vue-router'
+const route = useRoute()
 </script>
 <style scoped lang="scss">
 .app-container {

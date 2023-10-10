@@ -29,3 +29,12 @@ export const STATISTICS_TYPE = {
   'CATEGORY': 1,
   'TAG': 2
 }
+
+export const BLOG_TYPE: any = {
+  'category': {
+    label: 'Category'
+  },
+  'tag': {
+    label: 'Tag'
+  }
+}
