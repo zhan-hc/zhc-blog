@@ -7,9 +7,9 @@
 </template>
 
 <script lang='ts' setup>
-import articleCard from './components/article-card.vue'
-import emptyState from '@/components/empty-state.vue'
-import mainFrame from '@/components/main-frame.vue'
+import articleCard from '@/components/card/article-card.vue'
+import emptyState from '@/components/common/empty-state.vue'
+import mainFrame from '@/components/common/main-frame.vue'
 import useArticle from '@/hook/article/useArticle'
 
 const { loading, articleList, articleCardClick } = useArticle()

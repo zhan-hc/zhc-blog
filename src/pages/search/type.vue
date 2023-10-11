@@ -10,11 +10,11 @@
   import { onMounted, ref, watch } from 'vue'
   import { storeToRefs } from 'pinia'
   import { useRouter } from 'vue-router'
-  import { useArticleStore } from '@/store/article'
-  import emptyState from '@/components/empty-state.vue'
-  import timeLineCard from '@/components/card/time-line-card.vue'
   import useArticle from '@/hook/article/useArticle'
-  import mainFrame from '@/components/main-frame.vue'
+  import { useArticleStore } from '@/store/article'
+  import emptyState from '@/components/common/empty-state.vue'
+  import timeLineCard from '@/components/card/time-line-card.vue'
+  import mainFrame from '@/components/common/main-frame.vue'
   import { BLOG_TYPE } from '@/constants'
 
   const router = useRouter()

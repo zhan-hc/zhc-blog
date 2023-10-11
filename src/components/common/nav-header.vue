@@ -1,8 +1,14 @@
 <template>
   <div class="nav-header">
     <div class="header-left" @click="router.push('/')">
-      <img class="logo" src="../../public/logo.svg" alt=""/>
+      <img class="logo" src="../../../public/logo.svg" alt=""/>
       <span class="author">前端笨鸟</span>
+    </div>
+    <div class="header-search">
+      <input type="text" v-model="searchVal" placeholder="请输入关键字..." @keyup.enter="onSearch"/>
+      <div class="search-right" @click="onSearch">
+        <i class="iconfont icon-search"></i>
+      </div>
     </div>
     <div class="header-tags">
       <router-link to="/" class="tag">Home</router-link>
@@ -27,13 +33,18 @@
 </template>
 
 <script lang='ts' setup>
-  import { Ref, ref } from "vue"
-  import { onClickOutside } from '@vueuse/core'
+  import { ref } from "vue"
   import { useRouter } from "vue-router"
   import authorCard from '@/components/card/author-card.vue'
 
   const router = useRouter()
   const expandStatus = ref(false)
+  const searchVal = ref('')
+
+  const onSearch = () => {
+    router.push(`/search?keyword=${searchVal.value}`)
+    searchVal.value = ''
+  }
 
 </script>
 
@@ -46,7 +57,6 @@
     right: 0;
     display: flex;
     align-items: center;
-    justify-content: space-between;
     height: 64px;
     padding: 8px 32px;
     background-color: $theme-color;
@@ -54,13 +64,16 @@
     box-shadow: $box-shadow;
     box-sizing: border-box;
     .header-left {
+      flex: 1;
       display: flex;
       align-items: center;
       flex-shrink: 0;
+      -webkit-tap-highlight-color: transparent;
       &:hover {
         cursor: pointer;
       }
       .author {
+        flex-shrink: 0;
         font-size: 20px;
         font-weight: bold;
         color: $primary-color;
@@ -70,6 +83,47 @@
         width: 24px;
         height: 24px;
         margin-right: 10px;
+      }
+    }
+    .header-search {
+      display: flex;
+      align-items: center;
+      height: 34px;
+      min-width: 120px;
+      margin-right: 30px;
+      border-radius: 20px;
+      padding-left: 2px;
+      box-sizing: border-box;
+      background-color: $blog-color-gray-4;
+      transition: all .6s;
+      overflow: hidden;
+      input {
+        height: 30px;
+        padding-left: 10px;
+        border: none;
+        background-color: $blog-color-gray-4;
+        border-radius: 20px 0 0 20px;
+        font-size: 14px;
+        -webkit-appearance: none; //去掉input 在iOS中的默认圆角和内阴影
+        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); //去掉点击时高亮的样式
+        &:focus {
+          outline-color: $primary-color;
+        }
+      }
+      .search-right {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100%;
+        padding: 0 10px 0 8px;
+        background-color: $primary-color;
+        border-radius: 0 20px 20px 0;
+        box-sizing: border-box;
+      }
+      .icon-search {
+        color: $theme-color;
+        font-size: 24px;
+        cursor: pointer;
       }
     }
     .header-tags {

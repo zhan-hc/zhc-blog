@@ -26,19 +26,17 @@
           <span class="indicator">{{ props.data.comments }}</span>
         </div>
       </div>
-      <div class="cover-wrap" v-if="props.data.article_cover">
-        <img v-imgErr class="article-cover" :src="props.data.article_cover" alt="文章头图">
-      </div>
-      
+      <article-cover v-if="props.data.article_cover" :img-url="props.data.article_cover" style="margin-left: 8px;"></article-cover>
     </div>
   </div>
 </template>
 
 <script lang='ts' setup>
-import { ArticleType } from '@/constants/types';
-import { formatDate } from '@/utils/common';
-import { useArticleStore } from '@/store/article';
-import { storeToRefs } from 'pinia';
+import { storeToRefs } from 'pinia'
+import { ArticleType } from '@/constants/types'
+import { formatDate } from '@/utils/common'
+import { useArticleStore } from '@/store/article'
+import articleCover from '@/components/article-cover.vue'
 
 const props = defineProps({
   data: {
@@ -57,9 +55,6 @@ const { tagObj, categoryObj } = storeToRefs(store)
     padding: 15px;
     &:hover {
       cursor: pointer;
-      .article-cover {
-        transform: scale(1.1);
-      }
     }
     .article-header {
       display: flex;
@@ -73,7 +68,6 @@ const { tagObj, categoryObj } = storeToRefs(store)
       display: flex;
       margin-top: 12px;
       .article-info {
-        flex-grow: 1;
         overflow: hidden;
         .article-title {
           color: $blog-font-1;
@@ -99,20 +93,15 @@ const { tagObj, categoryObj } = storeToRefs(store)
           }
         }
       }
-      .cover-wrap {
-        width: 120px;
-        height: 80px;
-        margin-left: 8px;
-        border-radius: $blog-cover-radius;
-        flex-shrink: 0;
-        overflow: hidden;
-        box-sizing: border-box;
-        .article-cover {
-          width: 100%;
-          height: 100%;
-          object-fit: cover;
-          border-radius: 2px;
-          transition: all 0.6s;
+    }
+  }
+</style>
+<style lang='scss'>
+  .article-card {
+    &:hover {
+      .article-cover {
+        img {
+          transform: scale(1.1);
         }
       }
     }

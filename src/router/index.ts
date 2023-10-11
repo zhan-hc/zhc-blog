@@ -19,7 +19,12 @@ const routes: Array<RouteRecordRaw> = [
   {
     path: "/:type/:id",
     name: "Type",
-    component: () => import("@/pages/home/type.vue")
+    component: () => import("@/pages/search/type.vue")
+  },
+  {
+    path: "/search",
+    name: "Search",
+    component: () => import("@/pages/search/index.vue")
   },
 ];
 

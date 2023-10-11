@@ -7,19 +7,23 @@ export {}
 
 declare module 'vue' {
   export interface GlobalComponents {
+    ArticleCard: typeof import('./src/components/card/article-card.vue')['default']
+    ArticleCover: typeof import('./src/components/article-cover.vue')['default']
     AuthorCard: typeof import('./src/components/card/author-card.vue')['default']
     CategoryCard: typeof import('./src/components/card/category-card.vue')['default']
     ElAvatar: typeof import('element-plus/es')['ElAvatar']
     ElDrawer: typeof import('element-plus/es')['ElDrawer']
+    ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
-    EmptyState: typeof import('./src/components/empty-state.vue')['default']
-    MainFrame: typeof import('./src/components/main-frame.vue')['default']
+    EmptyState: typeof import('./src/components/common/empty-state.vue')['default']
+    MainFrame: typeof import('./src/components/common/main-frame.vue')['default']
     MenuBar: typeof import('./src/components/menu-bar.vue')['default']
-    NavHeader: typeof import('./src/components/nav-header.vue')['default']
+    NavHeader: typeof import('./src/components/common/nav-header.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SvgIcon: typeof import('./src/components/svg-icon.vue')['default']
+    SearchCard: typeof import('./src/components/card/search-card.vue')['default']
+    SvgIcon: typeof import('./src/components/common/svg-icon.vue')['default']
     TagCard: typeof import('./src/components/card/tag-card.vue')['default']
     TimeLineCard: typeof import('./src/components/card/time-line-card.vue')['default']
   }

@@ -3,13 +3,15 @@ import { ArticleType } from "@/constants/types";
 import useRouter from '@/hook/common/useRouter'
 import { addArticleView, getArticleList } from '@/api/atricle';
 export default function (init = true) {
-  const { routerGo } = useRouter()
+  // const { routerGo } = useRouter()
   const state: {
     articleList: ArticleType[]
-    loading: boolean
+    loading: boolean,
+    total: number
   } = reactive({
     articleList: [],
-    loading: false
+    loading: false,
+    total: 0
   })
 
   onMounted(async () => {
@@ -18,8 +20,9 @@ export default function (init = true) {
 
   const getArticleData = async (params = {}) => {
     state.loading = true
-    const [err, { articleList = [] }]:any = await getArticleList(params)
+    const [err, { articleList = [], total = 0 }]:any = await getArticleList(params)
     state.articleList = articleList
+    state.total = total
     state.loading = false
   }
 

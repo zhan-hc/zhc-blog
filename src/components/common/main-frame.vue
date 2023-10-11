@@ -1,9 +1,9 @@
 <template>
   <div class="home-container">
-    <div class="home-main">
+    <div class="home-main" :class="{'auto' : !props.rightShow}">
       <slot></slot>
     </div>
-    <div class="home-right">
+    <div class="home-right" v-if="props.rightShow">
       <author-card style="margin-bottom: 20px;"></author-card>
       <category-card style="margin-bottom: 20px;" :data="categoryData"></category-card>
       <tag-card :data="tagData"></tag-card>
@@ -25,6 +25,12 @@
   import useStatistics from '@/hook/article/useStatistics'
   import { STATISTICS_TYPE } from '@/constants'
 
+  const props = defineProps({
+    rightShow: {
+      type: Boolean,
+      default: true
+    }
+  })
 
   useTag()
   useCategory()
@@ -45,6 +51,10 @@
     padding-bottom: 32px;
     .article-item {
       margin-bottom: 20px;
+    }
+    &.auto {
+      flex: 1;
+      max-width: 1120px;
     }
   }
   .home-right {

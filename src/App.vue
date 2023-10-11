@@ -5,7 +5,7 @@
   </div>
 </template>
 <script setup lang="ts">
-import NavHeader from '@/components/nav-header.vue'
+import NavHeader from '@/components/common/nav-header.vue'
 import { useRoute } from 'vue-router'
 const route = useRoute()
 </script>

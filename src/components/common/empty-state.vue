@@ -6,7 +6,7 @@
 </template>
 
 <script lang='ts' setup>
-import svgIcon from '@/components/svg-icon.vue'
+import svgIcon from '@/components/common/svg-icon.vue'
 defineProps({
   svg: {
     type: String,
