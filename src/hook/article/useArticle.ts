@@ -20,7 +20,7 @@ export default function (init = true) {
 
   const getArticleData = async (params = {}) => {
     state.loading = true
-    const [err, { articleList = [], total = 0 }]:any = await getArticleList(params)
+    const [_err, { articleList = [], total = 0 }]:any = await getArticleList(params)
     state.articleList = articleList
     state.total = total
     state.loading = false

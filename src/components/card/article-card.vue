@@ -59,9 +59,9 @@ const { tagObj, categoryObj } = storeToRefs(store)
     .article-header {
       display: flex;
       font-size: 12px;
-      color: $blog-font-3;
+      @include font_color(3);
       .article-author {
-        color: $blog-font-2;
+        @include font_color(2);
       }
     }
     .article-content {
@@ -70,7 +70,7 @@ const { tagObj, categoryObj } = storeToRefs(store)
       .article-info {
         overflow: hidden;
         .article-title {
-          color: $blog-font-1;
+          @include font_color(0);
           font-size: 16px;
           font-weight: bold;
         }
@@ -78,7 +78,7 @@ const { tagObj, categoryObj } = storeToRefs(store)
           margin-top: 8px;
           font-size: 12px;
           line-height: 24px;
-          color: $blog-font-3;
+          @include font_color(3);
         }
         .article-indicator {
           margin-top: 8px;

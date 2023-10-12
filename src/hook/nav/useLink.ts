@@ -10,8 +10,7 @@ export default function () {
   })
 
   onMounted(async () => {
-    const [err, {links = []}]:any = await getLinks()
-    console.log(err)
+    const [_err, {links = []}]:any = await getLinks()
     state.linkList = links
   })
 

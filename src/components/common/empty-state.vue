@@ -27,7 +27,7 @@ defineProps({
     justify-content: center;
     align-items: center;
     .desc {
-      color: $blog-font-3;
+      @include font_color(3);
       font-size: 14px;
     }
   }

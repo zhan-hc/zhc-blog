@@ -49,7 +49,7 @@
 .menu-bar {
   position: relative;
   max-height: 500px;
-  background: $theme-color;
+  @include bg_color();
   border-radius: 6px;
   overflow-y: scroll;
   .menu-item {
@@ -59,6 +59,7 @@
     max-width: 200px;
     height: 40px;
     padding: 0 20px;
+    @include font-color(1);
     box-sizing: border-box;
     .menu-text {
       padding-bottom: 5px;

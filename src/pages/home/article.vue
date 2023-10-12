@@ -82,6 +82,7 @@
         box-sizing: border-box;
       }
       .article-title {
+        @include font_color(0);
         font-weight: bold;
         letter-spacing: 2px;
         font-size: 28px;
@@ -89,7 +90,7 @@
       .article-info {
         margin: 15px 0;
         font-size: 14px;
-        color: $blog-font-2;
+        @include font_color(2);
         .article-time {
           margin-right: 15px;
         }

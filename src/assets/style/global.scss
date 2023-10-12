@@ -21,7 +21,7 @@
 .card {
   box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
   border-radius: 6px;
-  background-color: $theme-color;
+  @include bg_color();
   &:hover {
     box-shadow: 0 4px 12px 12px rgba(7,17,27,0.1);
   }
@@ -63,6 +63,11 @@ a:active {
   text-decoration: none;
 }
 
+
+/*图标*/
+.iconfont {
+  @include icon_color();
+}
 
 /*浏览器css配置*/
 
@@ -109,4 +114,8 @@ img {
       text-overflow: ellipsis;
     }
   }
+}
+
+.el-drawer__body {
+  @include bg_color();
 }

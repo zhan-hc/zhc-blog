@@ -140,13 +140,13 @@ const onSubmit = () => {
         textarea {
             width: 100%;
             padding: 5px;
-            border: 2px solid $blog-font-4;
+            border: 2px solid #ccc;
             border-radius: 6px;
             resize: none;
             box-sizing: border-box;
             &:focus {
                 outline: none;
-                border: 2px solid $blog-font-4;
+                border: 2px solid #ccc;
             }
         }
     }

@@ -91,8 +91,10 @@ const handleCurrentChange = (val: number) => {
   .search-card {
     padding: 20px;
     overflow: hidden;
+    @include font-color(1);
     .card-header {
       display: flex;
+      align-items: center;
       padding-bottom: 10px;
       font-size: 14px;
       letter-spacing: 1px;
@@ -124,19 +126,19 @@ const handleCurrentChange = (val: number) => {
         flex-direction: column;
         flex: 1;
         margin-left: 20px;
-        color: $blog-font;
+        @include font_color(0);
         overflow: hidden;
         .article-title {
           font-size: 18px;
         }
         .article-desc {
           margin-top: 10px;
-          color: $blog-font-3;
+          @include font_color(3);
           font-size: 14px;
         }
         .article-sub {
           display: flex;
-          color: $blog-font-2;
+          @include font_color(2);
           margin-top: 10px;
           font-size: 12px;
           .article-date {
@@ -149,7 +151,6 @@ const handleCurrentChange = (val: number) => {
             flex: 1;
             .iconfont {
               margin-right: 5px;
-              color: $blog-font-3;
             }
           }
           .sub-right {

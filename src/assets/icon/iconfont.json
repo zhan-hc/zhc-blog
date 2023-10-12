@@ -6,6 +6,20 @@
   "description": "",
   "glyphs": [
     {
+      "icon_id": "128755",
+      "name": "sun",
+      "font_class": "light",
+      "unicode": "e6df",
+      "unicode_decimal": 59103
+    },
+    {
+      "icon_id": "35336143",
+      "name": "moon",
+      "font_class": "dark",
+      "unicode": "e8b1",
+      "unicode_decimal": 59569
+    },
+    {
       "icon_id": "11903687",
       "name": "date",
       "font_class": "date",

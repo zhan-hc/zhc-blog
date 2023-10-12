@@ -36,7 +36,7 @@ const toTag = (id: number) => {
     .card-title {
       font-weight: 500;
       letter-spacing: 1px;
-      color: $blog-font-1;
+      @include font_color(1);
       .icon-tag {
         font-size: 18px;
         margin-right: 10px;

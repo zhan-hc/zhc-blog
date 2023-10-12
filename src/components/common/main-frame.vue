@@ -71,7 +71,8 @@ footer {
   color: #999aaa;
   font-size: 12px;
   border-top: 1px solid $blog-color-gray-3;
-  background: $theme-color;
+  @include bg_color();
+  @include border_color();
   box-sizing: border-box;
 }
 </style>

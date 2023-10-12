@@ -23,6 +23,7 @@
   width: 200px;
   padding: 20px;
   box-sizing: border-box;
+  @include font_color(0);
   .author-avatar {
     width: 100px;
     height: 100px;

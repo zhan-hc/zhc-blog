@@ -8,11 +8,11 @@ export default function (reqTypeList: number[]) {
     tagData: []
   })
   const categoryStatistics = async () => {
-    const [err, data]: any = await getCategoryCount()
+    const [_err, data]: any = await getCategoryCount()
     state.categoryData = data
   }
   const tagStatistics = async () => {
-    const [err, data]: any = await getTagCount()
+    const [_err, data]: any = await getTagCount()
     state.tagData = data
   }
   const reqList = {

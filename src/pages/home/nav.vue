@@ -46,6 +46,7 @@ import { LinksType } from '@/constants/types'
   align-items: flex-start;
   max-width: 1100px;
   margin: 0 auto;
+  @include font-color(1);
   box-sizing: border-box;
   .tab-menu {
     margin: 20px 20px 0 20px;
@@ -95,21 +96,24 @@ import { LinksType } from '@/constants/types'
         border: 1px solid #DCDCDC;
         border-radius: 5px;
         box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+        img {
+          background-color: #fff;
+        }
         &:hover {
           cursor: pointer;
           box-shadow: 0 1px 2px 2px rgba(7,17,27,0.15);
-          &::after {
-            position: absolute;
-            top: -40px;
-            left: 0;
-            padding: 5px 10px;
-            content:attr(data-title);
-            font-size: 14px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: $theme-color;
-            white-space: nowrap;
-          }
+          // &::after {
+          //   position: absolute;
+          //   top: -40px;
+          //   left: 0;
+          //   padding: 5px 10px;
+          //   content:attr(data-title);
+          //   font-size: 14px;
+          //   border: 1px solid #ccc;
+          //   border-radius: 5px;
+          //   background-color: $theme-color;
+          //   white-space: nowrap;
+          // }
         }
       }
       .tag-icon {
@@ -125,4 +129,4 @@ import { LinksType } from '@/constants/types'
   }
 }
   
-</style>@/hook/home/useScrollAnchor@/hook/common/useScrollAnchor
+</style>

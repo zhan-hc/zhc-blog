@@ -10,6 +10,7 @@
         <i class="iconfont icon-search"></i>
       </div>
     </div>
+    <i class="theme iconfont" :class="isDark ? 'icon-dark' : 'icon-light'" @click="toggleDark()" style="font-size: 20px"></i>
     <div class="header-tags">
       <router-link to="/" class="tag">Home</router-link>
       <router-link to="/nav" class="tag">Nav</router-link>
@@ -17,7 +18,7 @@
     </div>
   </div>
   <div class="nav-fill"></div>
-  <el-drawer v-model="expandStatus" :with-header="false" size="70%">
+  <el-drawer v-model="expandStatus" class="drawer" :with-header="false" size="70%">
     <author-card class="author-wrap show"/>
     <div class="nav-list">
       <router-link to="/" class="tag"  @click.stop="expandStatus = false">
@@ -36,11 +37,22 @@
   import { ref } from "vue"
   import { useRouter } from "vue-router"
   import authorCard from '@/components/card/author-card.vue'
+  import { useDark, useToggle } from '@vueuse/core'
 
   const router = useRouter()
   const expandStatus = ref(false)
   const searchVal = ref('')
+  
+  const isDark = useDark({
+    storageKey: 'janus-blog-theme',
+    attribute: 'data-theme',
+    valueDark:'dark',
+    valueLight:'light'
+  })
 
+  const toggleDark = () => {
+    isDark.value = isDark.value ? false : true;
+  }
   const onSearch = () => {
     router.push(`/search?keyword=${searchVal.value}`)
     searchVal.value = ''
@@ -59,8 +71,8 @@
     align-items: center;
     height: 64px;
     padding: 8px 32px;
-    background-color: $theme-color;
-    border-bottom: 1px solid #f1f1f1;
+    @include bg_color();
+    // @include border_color();
     box-shadow: $box-shadow;
     box-sizing: border-box;
     .header-left {
@@ -83,6 +95,13 @@
         width: 24px;
         height: 24px;
         margin-right: 10px;
+      }
+    }
+    .theme {
+      margin-right: 20px;
+      font-weight: bold;
+      &:hover {
+        cursor: pointer;
       }
     }
     .header-search {
@@ -121,7 +140,7 @@
         box-sizing: border-box;
       }
       .icon-search {
-        color: $theme-color;
+        color: #fff;
         font-size: 24px;
         cursor: pointer;
       }
@@ -130,7 +149,7 @@
       display: flex;
       .tag {
         font-weight: bold;
-        color: rgba(0, 0, 0, 0.6);
+        @include font_color(0);
         margin-right: 20px;
         text-decoration: none;
         &.router-link-exact-active {
@@ -147,7 +166,6 @@
       .icon-expand {
         display: none;
         font-size: 24px;
-        color: $blog-color-gray-1;
         &:hover {
           cursor: pointer;
         }
@@ -164,13 +182,12 @@
   .nav-list {
     display: flex;
     flex-direction: column;
+    @include font_color(1);
     .tag {
       padding: 10px 10px;
       font-weight: bold;
-      color: rgba(0, 0, 0, 0.5);
       .iconfont {
         margin-right: 10px;
-        color: rgba(0, 0, 0, 0.5);
       }
       &.router-link-exact-active {
         color: $primary-color-sub;
@@ -198,4 +215,5 @@
     }
   }
   .slide-fade-enter-active {animation: expand .2s ease-in; transition: all 0.5s ease-out;}
+  
 </style>

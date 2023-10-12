@@ -19,8 +19,7 @@ export default function () {
   }
 
   onMounted(async () => {
-    const [err, {jump = []}]:any = await getJumpTypes()
-    console.log(err)
+    const [_err, {jump = []}]:any = await getJumpTypes()
     state.jumpTabs = jump
     activeTabIndex(0)
   })

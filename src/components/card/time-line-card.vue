@@ -53,41 +53,45 @@ const diffDateYear = (startDate: Date, endDate: Date) => {
       align-items: center;
       padding-left: 20px;
       padding-bottom: 20px;
-      border-left: 2px solid $blog-font-3;
+      border-left: 2px solid #8a919f;
       &:hover {
         cursor: pointer;
         &::before {
-          border: 4px solid $primary-color;
+          border: 4px solid $primary-color !important;
         }
         .article-title {
-          color: $primary-color;
+          color: $primary-color !important;
         }
       }
       .article-info {
-        color: $blog-font-2;
+        @include font_color(2);
         .article-date {
           margin-bottom: 10px;
           .icon-date {
             margin-right: 10px;
           }
         }
+        .article-title {
+          @include font_color(1);
+        }
       }
       &.category {
         font-size: 20px;
         padding-top: 20px;
+        @include font_color(1);
         &::before {
           left: -11px;
           width: 8px;
           height: 8px;
-          border: 6px solid $blog-font-3;
+          border: 6px solid #8a919f;
         }
       }
       &.year {
-        color: $blog-font-2;
+        @include font_color(2);
         font-size: 18px;
         padding-top: 20px;
         &::before {
-          border: 4px solid $primary-color;
+          border: 4px solid $primary-color !important;
         }
       }
       &::before {
@@ -98,8 +102,10 @@ const diffDateYear = (startDate: Date, endDate: Date) => {
         transform: translateY(-50%);
         width: 6px;
         height: 6px;
-        background: #fff;
-        border: 4px solid $blog-font-3;
+        // background: #fff;
+        border: 4px solid #8a919f;
+        // @include border_color();
+        @include bg_color();
         border-radius: 50%;
       }
     }
