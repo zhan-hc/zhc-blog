@@ -8,9 +8,9 @@
 </template>
 
 <script lang='ts' setup>
-  import { ref, watch, nextTick, computed } from 'vue';
+  import { ref, watch, nextTick, computed } from 'vue'
   import type { CSSProperties } from 'vue'
-  import { JumpType } from '@/constants/types';
+  import { JumpType } from '@/constants/types'
   const props = defineProps({
     tabs: {
       type: Array<JumpType>,

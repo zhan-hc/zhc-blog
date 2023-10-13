@@ -1,7 +1,7 @@
-import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios'
 import { RequestOptions} from './type'
 import { AxiosCanceler } from './cancel'
-import { handleNetworkError } from './tool';
+import { handleNetworkError } from './tool'
 
 class MyAxios {
   instance: AxiosInstance;

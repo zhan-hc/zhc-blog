@@ -1,6 +1,6 @@
-import { toRefs, reactive, onMounted } from 'vue';
-import { getJumpTypes } from '@/api/jump';
-import { JumpType } from '@/constants/types';
+import { toRefs, reactive, onMounted } from 'vue'
+import { getJumpTypes } from '@/api/jump'
+import { JumpType } from '@/constants/types'
 
 export default function () {
   const state: {

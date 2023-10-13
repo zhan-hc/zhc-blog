@@ -20,13 +20,14 @@
 </template>
 
 <script lang='ts' setup>
+  import { onMounted } from 'vue'
   import MenuBar from '../../components/menu-bar.vue'
   import useScrollAnchor from '@/hook/common/useScrollAnchor'
   import useLink from '@/hook/nav/useLink'
   import useJump from '@/hook/nav/useJump'
   import useRouter from '@/hook/common/useRouter'
   import useCollect from '@/hook/common/useCollect'
-import { LinksType } from '@/constants/types'
+  import { LinksType } from '@/constants/types'
   
   const { openWindow } = useRouter()
   const { linkList } = useLink()
@@ -38,6 +39,9 @@ import { LinksType } from '@/constants/types'
     reportEvent(`快捷导航-${link.link_name}-${link.link_id}`)
     openWindow(link.link_url)
   }
+  onMounted(() => {
+    reportEvent(`博客快捷导航页面`, 'view')
+  })
 </script>
 
 <style scoped lang='scss'>

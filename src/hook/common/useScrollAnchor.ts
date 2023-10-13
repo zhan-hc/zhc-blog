@@ -1,5 +1,5 @@
-import { toRefs, reactive } from 'vue';
-import useScrollFun from './useScrollFun';
+import { toRefs, reactive } from 'vue'
+import useScrollFun from './useScrollFun'
 
 /**
  * 

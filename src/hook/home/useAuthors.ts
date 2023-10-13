@@ -1,6 +1,6 @@
-import { useClipboard } from "@vueuse/core";
-import { AcountType } from '@/constants/types';
-import { OperateType } from "../../constants/types";
+import { useClipboard } from "@vueuse/core"
+import { AcountType } from '@/constants/types'
+import { OperateType } from "../../constants/types"
 
 export default function () {
 const { copy, isSupported } = useClipboard()

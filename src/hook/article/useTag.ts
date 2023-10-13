@@ -1,7 +1,7 @@
 import { onMounted, reactive, toRefs } from 'vue'
-import { TagType } from '@/constants/types';
-import { getTagList } from '@/api/tag';
-import { useArticleStore } from '@/store/article';
+import { TagType } from '@/constants/types'
+import { getTagList } from '@/api/tag'
+import { useArticleStore } from '@/store/article'
 export default function (init = true) {
 
   const store = useArticleStore()

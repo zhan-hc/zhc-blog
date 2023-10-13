@@ -1,5 +1,5 @@
-import { useRoute } from "vue-router";
-import { useRouter } from 'vue-router';
+import { useRoute } from "vue-router"
+import { useRouter } from 'vue-router'
 
 export default function () {
 

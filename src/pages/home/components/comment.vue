@@ -66,26 +66,26 @@
 </template>
 
 <script lang='ts' setup>
-import { CommentType } from '@/constants/types';
-import { envApiHost } from '@/utils/env';
-import { ref } from 'vue';
+    import { CommentType } from '@/constants/types'
+    import { envApiHost } from '@/utils/env'
+    import { ref } from 'vue'
 
-const emit = defineEmits(['submit'])
-const props = defineProps({
-    commentList: {
-        type: Array<CommentType>,
-        default: () => []
-    }
-})
-const curAvatarIndex = ref(1)
-const content = ref('')
-
-const onSubmit = () => {
-    emit('submit', {
-        avatar: `${envApiHost}/static/avatar/avatar${curAvatarIndex.value}.png`,
-        content: content.value
+    const emit = defineEmits(['submit'])
+    const props = defineProps({
+        commentList: {
+            type: Array<CommentType>,
+            default: () => []
+        }
     })
-}
+    const curAvatarIndex = ref(1)
+    const content = ref('')
+
+    const onSubmit = () => {
+        emit('submit', {
+            avatar: `${envApiHost}/static/avatar/avatar${curAvatarIndex.value}.png`,
+            content: content.value
+        })
+    }
 </script>
 
 <style scoped lang='scss'>

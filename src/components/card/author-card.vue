@@ -10,7 +10,7 @@
 </template>
 
 <script lang='ts' setup>
-  import { AuthorInfo } from '@/constants';
+  import { AuthorInfo } from '@/constants'
   import useAuthors from '@/hook/home/useAuthors'
   const { accountClick } = useAuthors()
 </script>

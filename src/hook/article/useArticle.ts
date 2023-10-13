@@ -1,9 +1,8 @@
-import { onMounted, reactive, toRefs } from "vue";
-import { ArticleType } from "@/constants/types";
-import useRouter from '@/hook/common/useRouter'
-import { addArticleView, getArticleList } from '@/api/atricle';
+import { onMounted, reactive, toRefs } from "vue"
+import { ArticleType } from "@/constants/types"
+import useCollect from '@/hook/common/useCollect'
+import { addArticleView, getArticleList } from '@/api/atricle'
 export default function (init = true) {
-  // const { routerGo } = useRouter()
   const state: {
     articleList: ArticleType[]
     loading: boolean,
@@ -13,10 +12,8 @@ export default function (init = true) {
     loading: false,
     total: 0
   })
-
-  onMounted(async () => {
-    init && await getArticleData()
-  })
+  const { reportEvent } = useCollect()
+  
 
   const getArticleData = async (params = {}) => {
     state.loading = true
@@ -33,9 +30,13 @@ export default function (init = true) {
   const articleCardClick = (article: ArticleType) => {
     article.article_view += 1
     addViewCount(article.article_id)
+    reportEvent(`博客文章-${article.article_title}`)
     location.href = `/post/${article.article_id}`
-    // routerGo(`/article/${id}`)
   }
+
+  onMounted(async () => {
+    init && await getArticleData()
+  })
 
   return {
     ...toRefs(state),

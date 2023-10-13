@@ -1,7 +1,7 @@
 import { onMounted, reactive, toRefs } from 'vue'
-import { CategoryType } from '@/constants/types';
-import { getCategoryList } from '@/api/category';
-import { useArticleStore } from '@/store/article';
+import { CategoryType } from '@/constants/types'
+import { getCategoryList } from '@/api/category'
+import { useArticleStore } from '@/store/article'
 export default function (init = true) {
 
   const store = useArticleStore()
