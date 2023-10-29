@@ -12,6 +12,7 @@ const route = useRoute()
 <style scoped lang="scss">
 .app-container {
   @include bg_image();
+  @include bg-main_color();
   background-size: 50px 50px;
 }
 </style>

@@ -9,12 +9,21 @@
     }
 }
 
-@mixin bg_image () {
+@mixin bg-main_color () {
     [data-theme="light"] & {
-        background-color: $theme-bg-image--light;
+        background-color: $theme-main-bg-color--light !important;
     }
     [data-theme="dark"] & {
-        background-color: $theme-bg-image--dark;
+        background-color: $theme-main-bg-color--dark !important;
+    }
+}
+
+@mixin bg_image () {
+    [data-theme="light"] & {
+        background-image: $theme-bg-image--light !important;
+    }
+    [data-theme="dark"] & {
+        background-image: $theme-bg-image--dark !important;
     }
 }
 
