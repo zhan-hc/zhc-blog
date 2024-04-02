@@ -1,8 +1,8 @@
 // index.ts
+import { ENV, envApiHost, getNodeEnv } from '@/utils/env'
 import MyAxios from './axios'
-
 const MyRequest =  new MyAxios({
-  baseURL: '/',
+  baseURL: getNodeEnv === ENV.DEV ? '/blogApi' : envApiHost,
   timeout: 3000
 })
 

@@ -1,0 +1,125 @@
+@media screen and (max-width: 767px) {
+  /* 顶部导航栏*/
+  .nav-header {
+    height: 56px !important;
+    padding: 4px 20px !important;
+    .header-left {
+      .author {
+        display: none;
+      }
+    }
+    .header-search {
+      margin-right: 15px !important;
+      height: 28px !important;
+      input {
+        height: 24px !important;
+        font-size: 12px !important;
+      }
+      .search-right {
+        padding: 0 7px 0 5px!important;
+      }
+    }
+    .header-tags {
+      .tag {
+        display: none;
+      }
+      .icon-expand {
+        display: block !important;
+      }
+    }
+  }
+  .nav-fill {
+    height: 56px !important;
+  }
+
+
+  /*快捷导航*/
+  .tab-container {
+    .tab-list {
+      margin: 0 !important;
+    }
+  }
+
+  /*首页*/
+  .home-container {
+    .home-main {
+      width: calc(100vw - 40px) !important;
+      margin: 0 auto !important;
+      .article-item {
+        box-sizing: border-box;
+      }
+    }
+    .home-right {
+      display: none;
+    }
+  }
+  /*nav*/
+  .menu-bar {
+    display: none;
+  }
+  .tab-content {
+    padding: 20px !important;
+  }
+
+  /*author*/
+  .author-card {
+    display: none !important;
+    &.show {
+      display: flex !important;
+    }
+  }
+
+  /*article*/ 
+  .article-container {
+    padding: 20px !important;
+    .article-minor {
+      display: none;
+    }
+    .article-wrap {
+      width: calc(100vw - 46px);
+    }
+    .article-comment {
+      width: calc(100vw - 46px) !important;
+    }
+  }
+
+  /*time-line*/
+  .time-line {
+    font-size: 14px;
+  }
+
+  /*search-card*/
+  .article-cover--large {
+    width: 120px !important;
+    height: 80px !important;
+  }
+  .search-card {
+    .article-title {
+      font-size: 16px !important;
+    }
+    .article-desc {
+      font-size: 12px !important;
+    }
+    .article-date {
+      flex: 1 !important;
+    }
+    .article-info {
+      justify-content: space-between !important;
+      margin-left: 10px !important;
+    }
+    .sub-left {
+      display: none !important;
+    }
+  }
+  
+}
+@media screen and (max-width: 959px) {
+  .article-container {
+    .author-card {
+      display: none !important;
+    }
+    .article-minor {
+      display: none;
+    }
+  }
+}

@@ -1,7 +1,7 @@
-import axios, { AxiosInstance, AxiosResponse, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios';
+import axios, { AxiosInstance, AxiosResponse, AxiosRequestConfig, CreateAxiosDefaults, InternalAxiosRequestConfig } from 'axios'
 import { RequestOptions} from './type'
 import { AxiosCanceler } from './cancel'
-import { handleNetworkError } from './tool';
+import { handleNetworkError } from './tool'
 
 class MyAxios {
   instance: AxiosInstance;
@@ -46,10 +46,11 @@ class MyAxios {
     )
   }
 
-  request<T>(config: InternalAxiosRequestConfig): Promise<[any, T | undefined]> {
+  request<T>(config: AxiosRequestConfig): Promise<[any, T | undefined]> {
     return new Promise((resolve, reject) => {
-      this.instance.request<any, T>(config).then(res => {
-        resolve([null, res])
+      this.instance.request<any, T>(config).then((res:any) => {
+        const { data } = res.data
+        resolve([null, data])
       })
       .catch((err) => {
         reject([err, undefined])
