@@ -34,11 +34,11 @@
 
   let categoryData = ref([])
   let tagData = ref([])
+  props.rightShow && useTag()
+  props.rightShow && useCategory()
 
   onMounted(() => {
     if (props.rightShow) {
-      useTag()
-      useCategory()
       const { categoryData: ctData, tagData: tData } = useStatistics([STATISTICS_TYPE.CATEGORY, STATISTICS_TYPE.TAG])
       categoryData = ctData
       tagData = tData
