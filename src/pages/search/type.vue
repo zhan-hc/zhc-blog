@@ -54,14 +54,14 @@
       case 'category':
         cardName.value =  `${BLOG_TYPE[type].label} - ${categoryObj.value[id]}`
         if (reportNum.value < 1) {
-          reportEvent(`博客分类_${categoryObj.value[id]}页面`, 'view')
+          reportEvent(`博客分类_${categoryObj.value[id]}页面`, { type: 'view' })
           reportNum.value = reportNum.value + 1
         }
         break;
       case 'tag':
         cardName.value =  `${BLOG_TYPE[type].label} - ${tagObj.value[id]}`
         if (reportNum.value < 1) {
-          reportEvent(`博客标签_${tagObj.value[id]}页面`, 'view')
+          reportEvent(`博客标签_${tagObj.value[id]}页面`, { type: 'view' })
           reportNum.value = reportNum.value + 1
         }
         break;

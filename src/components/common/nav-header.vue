@@ -14,6 +14,7 @@
     <div class="header-tags">
       <router-link to="/" class="tag">Home</router-link>
       <router-link to="/nav" class="tag">Nav</router-link>
+      <router-link to="/project" class="tag">Project</router-link>
       <i class="iconfont icon-expand" @click="expandStatus = true"></i>
     </div>
   </div>
@@ -28,6 +29,10 @@
       <router-link to="/nav" class="tag"  @click.stop="expandStatus = false">
         <i class="iconfont icon-menu"></i>
         <span>Nav</span>
+      </router-link>
+      <router-link to="/project" class="tag"  @click.stop="expandStatus = false">
+        <i class="iconfont icon-project"></i>
+        <span>Project</span>
       </router-link>
     </div>
   </el-drawer>

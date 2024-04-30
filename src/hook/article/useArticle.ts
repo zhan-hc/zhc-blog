@@ -30,7 +30,11 @@ export default function (init = true) {
   const articleCardClick = (article: ArticleType) => {
     article.article_view += 1
     addViewCount(article.article_id)
-    reportEvent(`博客文章-${article.article_title}`)
+    const common = JSON.stringify({
+      article_title: article.article_title,
+      article_id: article.article_id
+    })
+    reportEvent(`博客文章-${article.article_title}`, { common })
     location.href = `/post/${article.article_id}`
   }
 

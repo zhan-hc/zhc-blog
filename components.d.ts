@@ -16,6 +16,7 @@ declare module 'vue' {
     ElPagination: typeof import('element-plus/es')['ElPagination']
     ElPopover: typeof import('element-plus/es')['ElPopover']
     ElSkeleton: typeof import('element-plus/es')['ElSkeleton']
+    ElSkeletonItem: typeof import('element-plus/es')['ElSkeletonItem']
     EmptyState: typeof import('./src/components/common/empty-state.vue')['default']
     MainFrame: typeof import('./src/components/common/main-frame.vue')['default']
     MenuBar: typeof import('./src/components/menu-bar.vue')['default']

@@ -13,7 +13,7 @@ export default function () {
       })
     })
   }
-  const reportEvent = async (eventName: string, type = 'click') => {
+  const reportEvent = async (eventName: string, { type = 'click', common = '' } = {}) => {
     if (!userId.value) {
       userId.value = await getUserId()
     }
@@ -23,6 +23,7 @@ export default function () {
       page_url: window.location.href,
       timestamp: +new Date(),
       user_id: userId.value,
+      common
     })
   }
 

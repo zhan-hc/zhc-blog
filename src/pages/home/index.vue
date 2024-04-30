@@ -18,7 +18,7 @@
   const { reportEvent } = useCollect()
 
   onMounted(() => {
-    reportEvent(`博客首页页面`, 'view')
+    reportEvent(`博客首页页面`, { type: 'view' })
   })
 
 </script>

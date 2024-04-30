@@ -16,7 +16,7 @@
 </template>
 
 <script lang='ts' setup>
-  import { onMounted } from 'vue'
+  import { onMounted, ref } from 'vue'
   import tagCard from '@/components/card/tag-card.vue'
   import authorCard from '@/components/card/author-card.vue'
   import categoryCard from '@/components/card/category-card.vue'
@@ -32,9 +32,18 @@
     }
   })
 
-  useTag()
-  useCategory()
-  const { categoryData, tagData } = useStatistics([STATISTICS_TYPE.CATEGORY, STATISTICS_TYPE.TAG])
+  let categoryData = ref([])
+  let tagData = ref([])
+
+  onMounted(() => {
+    if (props.rightShow) {
+      useTag()
+      useCategory()
+      const { categoryData: ctData, tagData: tData } = useStatistics([STATISTICS_TYPE.CATEGORY, STATISTICS_TYPE.TAG])
+      categoryData = ctData
+      tagData = tData
+    }
+  })
 
 </script>
 

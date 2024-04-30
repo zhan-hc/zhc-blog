@@ -36,11 +36,15 @@
   const { reportEvent } = useCollect()
 
   const toNavUrl = (link: LinksType) => {
-    reportEvent(`快捷导航-${link.link_name}-${link.link_id}`)
+    const common = JSON.stringify({
+      link_id: link.link_id,
+      link_name: link.link_name
+    })
+    reportEvent(`快捷导航-${link.link_name}`, { common })
     openWindow(link.link_url)
   }
   onMounted(() => {
-    reportEvent(`博客快捷导航页面`, 'view')
+    reportEvent(`博客快捷导航页面`, { type: 'view' })
   })
 </script>
 

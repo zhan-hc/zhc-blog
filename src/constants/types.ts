@@ -84,6 +84,7 @@ export interface BuryReportType {
   page_url: string;
   timestamp: number;
   user_id: string;
+  common: string;
 }
 export interface categorySticsType {
   category_id: number;
@@ -104,4 +105,12 @@ export interface CommentType {
   article_id: number;
   create_time?: Date;
   isAuthor?: number;
+}
+
+export interface ProjectType {
+  project_id?: number;
+  project_url: string;
+  project_imgurl: string;
+  project_name: string;
+  project_desc: string;
 }

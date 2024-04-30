@@ -38,7 +38,7 @@
   }
   onMounted(async () => {
     await getArticleList()
-    reportEvent(`博客搜索结果页面`, 'view')
+    reportEvent(`博客搜索结果页面`, { type: 'view' })
   })
 
 </script>
