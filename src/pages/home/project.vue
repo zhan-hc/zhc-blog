@@ -12,7 +12,7 @@
       </el-skeleton>
       <div class="project-list">
         <div class="card project-item" v-for="item in projectList" :key="item.project_id" @click="projectClick(item)">
-          <img class="project-img" :src="item.project_imgurl" alt="" />
+          <img v-imgErr class="project-img" :src="item.project_imgurl" alt="项目封面" />
           <span class="project-name ellipsis">{{ item.project_name }}</span>
         </div>
       </div>
