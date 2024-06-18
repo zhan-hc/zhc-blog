@@ -11,10 +11,9 @@
                 <template #default>
                     <div style="display: flex;flex-wrap: wrap;">
                         <img 
-                            v-for="item in 16" :key="item" 
-                            :src="`${envApiHost}/static/avatar/avatar${item}.png`" 
-                            width="36" height="36" 
-                            style="margin: 0 10px 5px 0; cursor: pointer;"
+                            v-for="item in 5" :key="item" 
+                            :src="`${imgHost}/avatar/avatar${item}.png`"
+                            style="margin: 0 10px 5px 0; cursor: pointer;width: 48px; height: 48px;"
                             @click="curAvatarIndex = item"
                         />
                     </div>
@@ -35,32 +34,54 @@
                 stroke-width="1"
                 />
             </svg>
-            <textarea v-model="content" rows="4" placeholder="评论内容"></textarea>
+            <textarea v-model="content" rows="4" :placeholder="commentPlaceholder"></textarea>
             <div class="btn" @click="onSubmit">提交</div>
         </div>
     </div>
     <div class="comment-list">
-        <div class="comment-item" v-for="item in props.commentList" :key="item.c_id" :class="{'right': item.isAuthor}">
-            <img class="item-avatar" :src="item.avatar" alt="">
-            <div class="item-content">
-                <svg width="17" height="10" class="radius">
-                    <path
-                    :fill="item.isAuthor ? '#3CB371' : '#49b1f5'" 
-                    d="
-                        M 0 10 
-                        A 10,10,0,0,0,8 7 
-                        A 3,3,0,0,1,9 7
-                        A 10 10,0,0,0,17 10
-                    "
-                    stroke-width="1"
-                    />
-                </svg>
-                <div class="text">
-                    {{ item.content }}
+        <div class="comment-box" v-for="item in props.commentList" :key="item.c_id" :class="{author : item.isAuthor}">
+            <div class="comment-item">
+                <img class="item-avatar" :src="item.avatar" alt="">
+                <div class="item-content">
+                    <svg width="17" height="10" class="radius">
+                        <path
+                        :fill="item.isAuthor ? '#3CB371' : '#49b1f5'" 
+                        d="
+                            M 0 10 
+                            A 10,10,0,0,0,8 7 
+                            A 3,3,0,0,1,9 7
+                            A 10 10,0,0,0,17 10
+                        "
+                        stroke-width="1"
+                        />
+                    </svg>
+                    <div class="text">
+                        {{ item.content }}
+                    </div>
                 </div>
             </div>
+            <div class="comment-repay" v-for="childComment in item.comment_repay" :key="childComment.c_id" :class="{author : childComment.isAuthor}">
+                <img class="item-avatar" :src="childComment.avatar" alt="">
+                <div class="item-content">
+                    <svg width="17" height="10" class="radius">
+                        <path
+                        :fill="childComment.isAuthor ? '#3CB371' : '#49b1f5'" 
+                        d="
+                            M 0 10 
+                            A 10,10,0,0,0,8 7 
+                            A 3,3,0,0,1,9 7
+                            A 10 10,0,0,0,17 10
+                        "
+                        stroke-width="1"
+                        />
+                    </svg>
+                    <div class="text">
+                        {{ childComment.content }}
+                    </div>
+                </div>
+            </div>
+            <div class="repay-text" @click="repay(item)">{{ repayId ? '取消回复' : '回复' }}</div>
         </div>
-        <div class="comment-item"></div>
     </div>
   </div>
 </template>
@@ -77,14 +98,20 @@
             default: () => []
         }
     })
+    const commentPlaceholder = ref('评论内容')
     const curAvatarIndex = ref(1)
     const content = ref('')
+    const repayId = ref('')
 
     const onSubmit = () => {
         emit('submit', {
             avatar: `${envApiHost}/static/avatar/avatar${curAvatarIndex.value}.png`,
             content: content.value
         })
+    }
+    const repay = (comment: any) => {
+        commentPlaceholder.value = repayId.value ? '评论内容'  : `回复‘${comment.content}’`
+        repayId.value = repayId.value ? '' : comment.c_id
     }
 </script>
 
@@ -151,14 +178,63 @@
         }
     }
     .comment-list {
-        .comment-item {
+        .comment-box {
+            position: relative;
             display: flex;
-            align-items: center;
+            flex-direction: column;
+            align-items: flex-start;
             margin-top: 20px;
+            &:not(.author):hover {
+                .repay-text {
+                    display: block;
+                }
+            }
+            &.author {
+                flex-direction: row-reverse;
+                .comment-item, .comment-repay {
+                    flex-direction: row-reverse;
+                }
+                .item-content {
+                    margin-right: 20px;
+                    margin-left: 0;
+                    .radius {
+                        left: unset;
+                        right: -18px;
+                        transform: translateY(-50%) rotate(90deg) scale(1.5, 2);
+                    }
+                    .text {
+                        background-color: #3CB371;
+                    }
+                }
+                .item-avatar {
+                    padding: 6px;
+                    box-sizing: border-box;
+                }
+                 
+            }
+            .comment-item, .comment-repay {
+                align-items: center;
+                display: flex;
+            }
+            .comment-repay {
+                margin-left: 60px;
+                &.author {
+                    .item-avatar {
+                        padding: 6px;
+                        box-sizing: border-box;
+                    }
+                    .item-content {
+                        .text {
+                            background-color: #3CB371;
+                        }
+                    }
+                }
+            }
             .item-avatar {
-                width: 36px;
-                height: 36px;
+                width: 48px;
+                height: 48px;
                 border-radius: 50%;
+                
             }
             .item-content {
                 position: relative;
@@ -177,20 +253,14 @@
                     border-radius: 6px;
                 }
             }
-            &.right {
-                flex-direction: row-reverse;
-                .item-content {
-                    margin-right: 20px;
-                    margin-left: 0;
-                }
-                .radius {
-                    left: unset;
-                    right: -18px;
-                    transform: translateY(-50%) rotate(90deg) scale(1.5, 2);
-                }
-                .text {
-                    background-color: #3CB371;
-                }
+            .repay-text {
+                display: none;
+                position: absolute;
+                top: 5px;
+                right: 20px;
+                color: $primary-color;
+                font-size: 14px;
+                cursor: pointer;
             }
         }
     }
