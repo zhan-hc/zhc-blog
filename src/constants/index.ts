@@ -3,7 +3,7 @@ import { AuthorInfoType, OperateType } from "./types"
 export const AuthorInfo: AuthorInfoType = {
   name: '前端笨鸟',
   desc: '别说路不平,只是你不行',
-  avatarUrl: 'https://cdn.jsdelivr.net/gh/zhan-hc/image/blog/avatar.png',
+  avatarUrl: 'http://oss.janus-c.top/blog/avatar/avatar.png',
   account: [
     {
       label: 'github',
