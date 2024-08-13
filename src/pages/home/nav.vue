@@ -1,19 +1,19 @@
 <template>
   <div class="tab-container">
-    <menu-bar :tabs="jumpTabs" class="tab-menu"></menu-bar>
-    <div class="tab-content" @scroll="handleScroll($event, activeTabIndex)">
-      <div class="tab-list card" v-for="(tab, i) in linkList" :key="i" :id="`nav-bar_${i + 1}`">
-        <div class="tab-tag">
-          <span>{{ tab.jump_tag }}</span>
-          <span>{{ tab.jump_desc }}</span>
+    <ja-anchor container=".tab-content" class="tab-anchor">
+      <ja-anchor-link :href="`#${tab.jump_tag}_${tab.jump_id}`" :title="tab.jump_tag" v-for="tab in linkList" :key="tab.jump_id"></ja-anchor-link>
+    </ja-anchor>
+    <div class="tab-content">
+      <ja-card class="card tab-list" v-for="tab in linkList" :key="tab.jump_id" :id="`${tab.jump_tag}_${tab.jump_id}`">
+        <template #header>
+          <span class="tag-title">{{ tab.jump_tag }}</span>
+          <span class="tag-desc">{{ tab.jump_desc }}</span>
+        </template>
+        <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="toNavUrl(link)" :data-title="link.link_desc || link.link_name">
+          <img v-imgErr v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="图标">
+          <span class="tag-name ellipsis">{{ link.link_name }}</span>
         </div>
-        <div class="tag-container">
-          <div v-for="(link, j) in tab.jump_links" :key="j" class="tag-item" @click="toNavUrl(link)" :data-title="link.link_desc || link.link_name">
-            <img v-imgErr v-if="link.link_icon" class="tag-icon" :src="link.link_icon" alt="图标">
-            <span class="tag-name ellipsis">{{ link.link_name }}</span>
-          </div>
-        </div>
-      </div>
+      </ja-card>
     </div>
   </div>
   
@@ -24,15 +24,12 @@
   import MenuBar from '../../components/menu-bar.vue'
   import useScrollAnchor from '@/hook/common/useScrollAnchor'
   import useLink from '@/hook/nav/useLink'
-  import useJump from '@/hook/nav/useJump'
   import useRouter from '@/hook/common/useRouter'
   import useCollect from '@/hook/common/useCollect'
   import { LinksType } from '@/constants/types'
   
   const { openWindow } = useRouter()
   const { linkList } = useLink()
-  const { jumpTabs, activeTabIndex } = useJump()
-  const { handleScroll } = useScrollAnchor()
   const { reportEvent } = useCollect()
 
   const toNavUrl = (link: LinksType) => {
@@ -54,14 +51,20 @@
   align-items: flex-start;
   max-width: 1100px;
   margin: 0 auto;
-  @include font-color(1);
   box-sizing: border-box;
-  .tab-menu {
+  @include font-color(1);
+  .tab-anchor {
     margin: 20px 20px 0 20px;
     flex-shrink: 0;
+    box-shadow: 0 4px 8px 6px rgba(7,17,27,0.06);
+    border-radius: 6px;
+    border: 1px solid transparent;
+    @include bg_color();
+    @include border_color();
   }
   .tab-content {
     height: calc(100vh - 64px);
+    width: 100%;
     box-sizing: border-box;
     overflow-y: scroll;
     &::-webkit-scrollbar {
@@ -71,22 +74,17 @@
       display: flex;
       flex-direction: column;
       margin: 20px;
-      padding: 20px 20px 0;
-      .tab-tag {
-        padding-bottom: 10px;
+      @include bg_color();
+      .tag-title {
         font-size: 20px;
-        font-weight: bold;
         letter-spacing: 1px;
-        border-bottom: 2px solid #d3d3d3;
-        span {
-          &:first-child {
-            margin-right: 20px;
-          }
-          &:last-child {
-            font-size: 16px;
-            color: #808080;
-          }
-        }
+        font-weight: bold;
+        margin-right: 20px;
+        @include font_color(0);
+      }
+      .tag-desc {
+        font-size: 16px;
+        color: #808080;
       }
       .tag-container {
         display: flex;
@@ -104,6 +102,9 @@
         border: 1px solid #DCDCDC;
         border-radius: 5px;
         box-shadow: 0 2px 12px 0 rgba(0,0,0,0.1);
+        @include font_color(2);
+        @include border_color();
+        @include bg_color();
         img {
           background-color: #fff;
         }
@@ -136,5 +137,19 @@
     }
   }
 }
+::v-deep .ja-card {
+  &__body {
+    display: flex;
+    flex-wrap: wrap;
+  }
+}
+
+::v-deep .ja-anchor__list {
+  padding: 5px 20px;
+  .ja-anchor__link  {
+    font-size: 14px;
+  }
+}
+
   
 </style>
