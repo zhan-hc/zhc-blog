@@ -4,6 +4,8 @@ export const envApiHost = import.meta.env.VITE_API_HOST
 
 export const pageHost = import.meta.env.VITE_PAGE_HOST
 
+export const assetsDomain = import.meta.env.VITE_ASSETS_DOMAIN
+
 export const ENV = {
   DEV: 'development',
   PROD: 'production'

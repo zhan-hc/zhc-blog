@@ -1,7 +1,7 @@
 <template>
   <div class="nav-header">
     <div class="header-left" @click="router.push('/')">
-      <img class="logo" src="../../../public/logo.svg" alt=""/>
+      <img class="logo" :src="`${assetsDomain}/logo/logo.svg`" alt=""/>
       <span class="author">前端笨鸟</span>
     </div>
     <div class="header-search">
@@ -43,6 +43,7 @@
   import { useRouter } from "vue-router"
   import authorCard from '@/components/card/author-card.vue'
   import { useDark, useToggle } from '@vueuse/core'
+  import { assetsDomain } from "@/utils/env"
 
   const router = useRouter()
   const expandStatus = ref(false)
@@ -97,8 +98,8 @@
         letter-spacing: 3px;
       }
       .logo {
-        width: 24px;
-        height: 24px;
+        width: 52px;
+        height: 52px;
         margin-right: 10px;
       }
     }
