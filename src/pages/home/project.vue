@@ -62,11 +62,7 @@ import { ProjectType } from '@/constants/types'
     .project-list {
       display: flex;
       flex-wrap: wrap;
-      justify-content: space-between;
-      &::after {
-        content: '';
-        width: 220px;
-      }
+      gap: 50px;
       .project-item {
         display: flex;
         flex-direction: column;
