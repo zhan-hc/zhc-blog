@@ -25,24 +25,25 @@
   import useScrollAnchor from '@/hook/common/useScrollAnchor'
   import useLink from '@/hook/nav/useLink'
   import useRouter from '@/hook/common/useRouter'
-  import useCollect from '@/hook/common/useCollect'
+  import { useBury } from 'janus-bury'
   import { LinksType } from '@/constants/types'
   
   const { openWindow } = useRouter()
   const { linkList } = useLink()
-  const { reportEvent } = useCollect()
+  const { dataSender } = useBury()
 
   const toNavUrl = (link: LinksType) => {
     const common = JSON.stringify({
       link_id: link.link_id,
       link_name: link.link_name
     })
-    reportEvent(`快捷导航-${link.link_name}`, { common })
+    dataSender.value?.track({
+      event_name: `快捷导航-${link.link_name}`,
+      event_msg: JSON.stringify(common),
+      event_type: 'click'
+    })
     openWindow(link.link_url)
   }
-  onMounted(() => {
-    reportEvent(`博客快捷导航页面`, { type: 'view' })
-  })
 </script>
 
 <style scoped lang='scss'>

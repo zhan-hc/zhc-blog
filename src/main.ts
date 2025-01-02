@@ -8,10 +8,15 @@ import 'janus-ui/theme-chalk/index.css'
 import 'virtual:svg-icons-register'
 import { imgError } from './utils/directive'
 import JanusUi from 'janus-ui'
+import JanusBury from 'janus-bury'
 
 const app = createApp(App)
 app.use(router)
 app.use(store)
 app.use(JanusUi)
+app.use(JanusBury, {
+  appName: 'zhc-blog',
+  server_url: 'http://www.janus-c.top/blog/event/report'
+})
 app.directive('imgErr', imgError)
 app.mount('#app')

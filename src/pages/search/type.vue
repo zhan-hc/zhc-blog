@@ -11,7 +11,6 @@
   import { storeToRefs } from 'pinia'
   import { useRouter } from 'vue-router'
   import useArticle from '@/hook/article/useArticle'
-  import useCollect from '@/hook/common/useCollect'
   import { useArticleStore } from '@/store/article'
   import emptyState from '@/components/common/empty-state.vue'
   import timeLineCard from '@/components/card/time-line-card.vue'
@@ -20,7 +19,6 @@
 
   const router = useRouter()
   const store = useArticleStore()
-  const { reportEvent } = useCollect()
   const { loading, articleList, getArticleData } = useArticle(false)
 
   let typeName = ''
@@ -31,7 +29,6 @@
   
   onMounted(async () => {
     let params = {}
-    let pageName = ''
     switch(type) {
       case 'category': 
         params = {
@@ -54,14 +51,12 @@
       case 'category':
         cardName.value =  `${BLOG_TYPE[type].label} - ${categoryObj.value[id]}`
         if (reportNum.value < 1) {
-          reportEvent(`博客分类_${categoryObj.value[id]}页面`, { type: 'view' })
           reportNum.value = reportNum.value + 1
         }
         break;
       case 'tag':
         cardName.value =  `${BLOG_TYPE[type].label} - ${tagObj.value[id]}`
         if (reportNum.value < 1) {
-          reportEvent(`博客标签_${tagObj.value[id]}页面`, { type: 'view' })
           reportNum.value = reportNum.value + 1
         }
         break;

@@ -24,13 +24,13 @@
 <script lang='ts' setup>
 import useRouter from '@/hook/common/useRouter'
 import useProject from '@/hook/project/useProject'
-import useCollect from '@/hook/common/useCollect'
+import { useBury } from 'janus-bury'
 import mainFrame from '@/components/common/main-frame.vue'
 import emptyState from '@/components/common/empty-state.vue'
 import { onMounted } from 'vue'
 import { ProjectType } from '@/constants/types'
 
-  const { reportEvent } = useCollect()
+const { dataSender } = useBury()
   const { projectList, loading } = useProject()
   const { openWindow } = useRouter()
 
@@ -39,13 +39,13 @@ import { ProjectType } from '@/constants/types'
       project_url: item.project_url,
       project_name: item.project_name
     })
-    reportEvent(`博客项目页面_项目点击_${item.project_name}`, { common })
+    dataSender.value?.track({
+      event_name: `博客项目页面_项目点击_${item.project_name}`,
+      event_msg: JSON.stringify(common),
+      event_type: 'click'
+    })
     openWindow(item.project_url)
   }
-
-  onMounted(() => {
-    reportEvent(`博客项目页面`, { type: 'view' })
-  })
   
 </script>
 

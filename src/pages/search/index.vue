@@ -13,7 +13,6 @@
   import emptyState from '@/components/common/empty-state.vue'
   import mainFrame from '@/components/common/main-frame.vue'
   import useArticle from '@/hook/article/useArticle'
-  import useCollect from '@/hook/common/useCollect'
 
   const { loading, articleList, total, getArticleData } = useArticle(false)
   const page = reactive({
@@ -22,7 +21,6 @@
   })
   const router = useRouter()
   const { keyword } :any = router.currentRoute.value.query
-  const { reportEvent } = useCollect()
 
   const pageChange = async (val: number) => {
     articleList.value = []
@@ -38,7 +36,6 @@
   }
   onMounted(async () => {
     await getArticleList()
-    reportEvent(`博客搜索结果页面`, { type: 'view' })
   })
 
 </script>

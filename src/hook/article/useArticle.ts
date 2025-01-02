@@ -1,6 +1,6 @@
 import { onMounted, reactive, toRefs } from "vue"
 import { ArticleType } from "@/constants/types"
-import useCollect from '@/hook/common/useCollect'
+import { useBury } from 'janus-bury'
 import { addArticleView, getArticleList } from '@/api/atricle'
 export default function (init = true) {
   const state: {
@@ -12,7 +12,7 @@ export default function (init = true) {
     loading: false,
     total: 0
   })
-  const { reportEvent } = useCollect()
+  const { dataSender } = useBury()
   
 
   const getArticleData = async (params = {}) => {
@@ -34,7 +34,11 @@ export default function (init = true) {
       article_title: article.article_title,
       article_id: article.article_id
     })
-    reportEvent(`博客文章-${article.article_title}`, { common })
+    dataSender.value?.track({
+      event_name: `博客文章-${article.article_title}`,
+      event_msg: JSON.stringify(common),
+      event_type: 'click'
+    })
     location.href = `/post/${article.article_id}`
   }
 
