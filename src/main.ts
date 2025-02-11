@@ -16,7 +16,7 @@ app.use(store)
 app.use(JanusUi)
 app.use(JanusBury, {
   appName: 'zhc-blog',
-  server_url: 'http://www.janus-c.top/blog/event/report'
+  server_url: 'https://www.janus-c.top/blog/event/report'
 })
 app.directive('imgErr', imgError)
 app.mount('#app')
