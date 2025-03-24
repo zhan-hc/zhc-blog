@@ -15,7 +15,7 @@ export default function (init = true) {
   const { dataSender } = useBury()
   
 
-  const getArticleData = async (params = {}) => {
+  const getArticleData = async (params = { status: 1 }) => {
     state.loading = true
     const [_err, { articleList = [], total = 0 }]:any = await getArticleList(params)
     state.articleList = articleList
