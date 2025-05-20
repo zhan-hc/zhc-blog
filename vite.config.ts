@@ -5,6 +5,8 @@ import { createSvgIconsPlugin } from 'vite-plugin-svg-icons'
 import AutoImport from 'unplugin-auto-import/vite'
 import Components from 'unplugin-vue-components/vite'
 import { ElementPlusResolver } from 'unplugin-vue-components/resolvers'
+import { JanusResolver } from 'janus-ui/lib/utils/vite'
+import { visualizer } from 'rollup-plugin-visualizer';
 
 export default  ({ mode }) => { 
   process.env = {...process.env, ...loadEnv(mode, process.cwd())}
@@ -30,10 +32,19 @@ export default  ({ mode }) => {
         symbolId: 'icon-[dir]-[name]'
       }),
       AutoImport({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver(),
+          JanusResolver()
+        ],
       }),
       Components({
-        resolvers: [ElementPlusResolver()],
+        resolvers: [
+          ElementPlusResolver(),
+          JanusResolver()
+        ],
+      }),
+      visualizer({
+        filename: './dist/stats.html', // 生成的统计文件位置
       })
     ],
     css: {
