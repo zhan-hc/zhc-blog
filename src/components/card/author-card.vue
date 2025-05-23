@@ -3,9 +3,9 @@
     <img v-imgErr class="author-avatar" :src="AuthorInfo.avatarUrl" alt="头像">
     <div class="author-username">{{ AuthorInfo.name }}</div>
     <div class="author-desc">{{ AuthorInfo.desc }}</div>
-    <div class="author-contact">
+    <!-- <div class="author-contact">
       <i class="iconfont" :class="item.icon" @click="accountClick(item)" v-for="(item, i) in AuthorInfo.account" :key="i"></i>
-    </div>
+    </div> -->
   </div>
 </template>
 

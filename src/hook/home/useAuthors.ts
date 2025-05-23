@@ -33,6 +33,7 @@ const handleCopy = (url: string) => {
     return
   }
   copy(url)
+  alert('复制成功')
 };
   return {
     accountClick,

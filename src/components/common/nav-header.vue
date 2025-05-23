@@ -1,6 +1,21 @@
 <template>
-  <div class="nav-header">
-    <div class="header-left" @click="router.push('/')">
+  <ja-nav-bar :icon="`${assetsDomain}/logo/logo.svg`" title="前端笨鸟" placeholder :socialLinks="socialLinks">
+    <template #right>
+      <div class="header-search">
+        <input type="text" v-model="searchVal" placeholder="请输入关键字..." @keyup.enter="onSearch"/>
+        <div class="search-right" @click="onSearch">
+          <i class="iconfont icon-search"></i>
+        </div>
+      </div>
+      <ja-nav-links :data="navLink"></ja-nav-links>
+      <div class="ja-divider__before">
+        <ja-switch
+          style="--ja-switch-on-color: #2c2c2c;--ja-switch-off-color:#f2f2f2;fontSize: 14px;" v-model="isDark" :active-icon="Moon" :inactive-icon="Sun"></ja-switch>
+      </div>
+      <i class="iconfont icon-expand" @click="expandStatus = true"></i>
+    </template>
+  </ja-nav-bar>
+    <!-- <div class="header-left" @click="router.push('/')">
       <img class="logo" :src="`${assetsDomain}/logo/logo.svg`" alt=""/>
       <span class="author">前端笨鸟</span>
     </div>
@@ -16,9 +31,8 @@
       <router-link to="/nav" class="tag">Nav</router-link>
       <router-link to="/project" class="tag">Project</router-link>
       <i class="iconfont icon-expand" @click="expandStatus = true"></i>
-    </div>
-  </div>
-  <div class="nav-fill"></div>
+    </div> -->
+  <!-- <div class="nav-fill"></div> -->
   <el-drawer v-model="expandStatus" class="drawer" :with-header="false" size="70%">
     <author-card class="author-wrap show"/>
     <div class="nav-list">
@@ -44,11 +58,43 @@
   import authorCard from '@/components/card/author-card.vue'
   import { useDark, useToggle } from '@vueuse/core'
   import { assetsDomain } from "@/utils/env"
+  import { Github, Wechat, Juejin, Moon, Sun } from '@janus-c/icons-vue'
+  import useAuthors from '@/hook/home/useAuthors'
+
 
   const router = useRouter()
   const expandStatus = ref(false)
   const searchVal = ref('')
-  
+  const socialLinks = [
+    {
+      icon: Github,
+      link: 'https://github.com/zhan-hc'
+    },
+    {
+      icon: Juejin,
+      link: 'https://juejin.cn/user/1433418895468829'
+    },
+    {
+      icon: Wechat,
+      event: () => handleCopy('Januscha')
+    }
+  ]
+
+  const navLink = [{
+    text: '首页',
+    link: '/'
+  },
+  {
+    text: '导航',
+    link: '/nav'
+  },
+  {
+    text: '项目',
+    link: '/project'
+  }]
+  const { handleCopy } = useAuthors()
+  const themeStatus = ref(false)
+
   const isDark = useDark({
     storageKey: 'janus-blog-theme',
     attribute: 'data-theme',
@@ -110,47 +156,6 @@
         cursor: pointer;
       }
     }
-    .header-search {
-      display: flex;
-      align-items: center;
-      height: 34px;
-      min-width: 120px;
-      margin-right: 30px;
-      border-radius: 20px;
-      padding-left: 2px;
-      box-sizing: border-box;
-      background-color: $blog-color-gray-4;
-      transition: all .6s;
-      overflow: hidden;
-      input {
-        height: 30px;
-        padding-left: 10px;
-        border: none;
-        background-color: $blog-color-gray-4;
-        border-radius: 20px 0 0 20px;
-        font-size: 14px;
-        -webkit-appearance: none; //去掉input 在iOS中的默认圆角和内阴影
-        -webkit-tap-highlight-color: rgba(0, 0, 0, 0); //去掉点击时高亮的样式
-        &:focus {
-          outline-color: $primary-color;
-        }
-      }
-      .search-right {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        height: 100%;
-        padding: 0 10px 0 8px;
-        background-color: $primary-color;
-        border-radius: 0 20px 20px 0;
-        box-sizing: border-box;
-      }
-      .icon-search {
-        color: #fff;
-        font-size: 24px;
-        cursor: pointer;
-      }
-    }
     .header-tags {
       display: flex;
       .tag {
@@ -169,13 +174,47 @@
           margin-right: 0;
         }
       }
-      .icon-expand {
-        display: none;
-        font-size: 24px;
-        &:hover {
-          cursor: pointer;
-        }
+    }
+  }
+  .header-search {
+    display: flex;
+    align-items: center;
+    height: 34px;
+    min-width: 120px;
+    margin-right: 30px;
+    border-radius: 20px;
+    padding-left: 2px;
+    box-sizing: border-box;
+    background-color: $blog-color-gray-4;
+    transition: all .6s;
+    overflow: hidden;
+    input {
+      height: 30px;
+      padding-left: 10px;
+      border: none;
+      background-color: $blog-color-gray-4;
+      border-radius: 20px 0 0 20px;
+      font-size: 14px;
+      -webkit-appearance: none; //去掉input 在iOS中的默认圆角和内阴影
+      -webkit-tap-highlight-color: rgba(0, 0, 0, 0); //去掉点击时高亮的样式
+      &:focus {
+        outline-color: $primary-color;
       }
+    }
+    .search-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100%;
+      padding: 0 10px 0 8px;
+      background-color: $primary-color;
+      border-radius: 0 20px 20px 0;
+      box-sizing: border-box;
+    }
+    .icon-search {
+      color: #fff;
+      font-size: 24px;
+      cursor: pointer;
     }
   }
   .author-wrap {
@@ -205,6 +244,13 @@
         cursor: pointer;
         color: $primary-color-active;
       }
+    }
+  }
+  .icon-expand {
+    display: none;
+    font-size: 24px;
+    &:hover {
+      cursor: pointer;
     }
   }
   .nav-fill {

@@ -28,7 +28,6 @@
     box-shadow: 0 4px 12px 12px rgba(7,17,27,0.1);
   }
 }
-
 .dividing {
   width: 1px;
   height: 14px;
@@ -120,4 +119,16 @@ img {
 
 .el-drawer__body {
   @include bg_color();
+}
+
+// janus-ui
+.ja-nav-bar {
+  @include bg_color();
+  @include border_color();
+  &__title {
+    @include font_color(0);
+  }
+}
+.ja-nav-links__link {
+  @include font_color(0);
 }

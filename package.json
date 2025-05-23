@@ -20,7 +20,7 @@
     "fingerprintjs2": "^2.1.4",
     "github-markdown-css": "^5.2.0",
     "janus-bury": "1.0.8",
-    "janus-ui": "0.0.6",
+    "janus-ui": "0.1.5",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",

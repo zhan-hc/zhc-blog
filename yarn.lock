@@ -226,7 +226,7 @@
 
 "@janus-c/icons-vue@^1.0.2":
   version "1.0.2"
-  resolved "https://registry.npmmirror.com/@janus-c/icons-vue/-/icons-vue-1.0.2.tgz#f334f2bba2812fdbb28291fb3f4d13265c55b5d8"
+  resolved "https://registry.npmjs.org/@janus-c/icons-vue/-/icons-vue-1.0.2.tgz#f334f2bba2812fdbb28291fb3f4d13265c55b5d8"
   integrity sha512-wVeVn2GfAYcodFxz0oHf7zz7qZNHLKjVArccU2RWD/C8bv4EDvMlXUXocdxdaBXvoMvX5e7Mr6g4DiidAJ7ohg==
 
 "@jridgewell/sourcemap-codec@^1.4.15":
@@ -1703,10 +1703,10 @@ janus-bury@1.0.8:
     vue "^3.5.13"
     vue-router "^4.5.0"
 
-janus-ui@0.0.6:
-  version "0.0.6"
-  resolved "https://registry.npmjs.org/janus-ui/-/janus-ui-0.0.6.tgz#c00e264616f2e3605d49c4ea2f774d3aeba7843b"
-  integrity sha512-JmA5Kpmqrj50JQU6DhZWnc9quJiP3pN+KWD4IHlx46SrN2XzSVZWBBZLsJDvu81hAYiNVrQ1q3StGrgY+/Wzyw==
+janus-ui@0.1.5:
+  version "0.1.5"
+  resolved "https://registry.npmjs.org/janus-ui/-/janus-ui-0.1.5.tgz#b60899183b4a26b7a96ef8ec48a54511adcd120c"
+  integrity sha512-IqLil915a5zB3Wjz6oRgE8RNaGj0EyAZKW9u3aRa/cXQ5YyuA8b9dqaswbq3d46eMTHEpZe4TdJo4JIXMZwOVQ==
 
 js-base64@^2.1.9:
   version "2.6.4"
