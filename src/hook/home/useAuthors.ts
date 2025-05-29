@@ -1,6 +1,7 @@
 import { useClipboard } from "@vueuse/core"
 import { AcountType } from '@/constants/types'
 import { OperateType } from "../../constants/types"
+import { JaMessage } from 'janus-ui'
 
 export default function () {
 const { copy, isSupported } = useClipboard()
@@ -29,11 +30,15 @@ const accountClick = (item: AcountType) => {
  */
 const handleCopy = (url: string) => {
   if (!isSupported) {
-    console.log('您的浏览器不支持Clipboard API')
+    JaMessage({
+      msg: '您的浏览器不支持Clipboard API'
+    })
     return
   }
   copy(url)
-  alert('复制成功')
+  JaMessage({
+    msg: '复制成功'
+  })
 };
   return {
     accountClick,

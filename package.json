@@ -11,7 +11,7 @@
     "deploy": "vite build --mode prod & node deploy.js"
   },
   "dependencies": {
-    "@janus-c/icons-vue": "^1.0.2",
+    "@janus-c/icons-vue": "^1.0.5",
     "@vueuse/core": "^10.2.1",
     "axios": "^1.4.0",
     "dayjs": "^1.11.9",
@@ -20,7 +20,7 @@
     "fingerprintjs2": "^2.1.4",
     "github-markdown-css": "^5.2.0",
     "janus-bury": "1.0.8",
-    "janus-ui": "0.1.5",
+    "janus-ui": "0.1.7",
     "normalize.css": "^8.0.1",
     "pinia": "^2.1.4",
     "vue": "^3.3.4",
