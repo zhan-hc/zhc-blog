@@ -8,3 +8,11 @@ export const report = (data: BuryReportType) => {
     data
   })
 }
+
+export const reportVisitor = (data: any) => {
+  return MyRequest.request({
+    url: '/visitor/addRecord',
+    method: 'POST',
+    data
+  })
+}
